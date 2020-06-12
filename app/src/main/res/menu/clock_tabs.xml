@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/test"
+        android:icon="@mipmap/icon_main_1"
+        android:title="Sweet meet" />
+    <item
+        android:id="@+id/test2"
+        android:icon="@mipmap/icon_main_2"
+        android:title="Squre" />
+    <item
+        android:id="@+id/test3"
+        android:icon="@mipmap/icon_main_3"
+        android:title="News" />
+    <item
+        android:id="@+id/test4"
+        android:icon="@mipmap/icon_main_4"
+        android:title="Home" />
+</menu>

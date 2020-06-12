@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#bce2e8"
+    android:orientation="vertical">
+    <View
+        android:id="@+id/iv_seacher"
+        android:layout_width="60dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerInside"
+        android:layout_height="70dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_below="@+id/iv_seacher"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <app.com.yangquan.view.slide.SmileView
+        android:id="@+id/smile_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
