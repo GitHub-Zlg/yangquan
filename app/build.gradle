@@ -11,6 +11,18 @@ android {
         versionName "1.0"
         multiDexEnabled true //开启Dex5
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "d7564a40af5ef6dd8d4ace34", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -81,4 +93,10 @@ dependencies {
     implementation project(path: ':library')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'cn.bingoogolapple:bga-baseadapter:2.0.0@aar'
+    /*极光核心库*/
+    implementation 'cn.jiguang.sdk:jcore:2.2.6'
+    /* 极光推送 */
+    implementation 'cn.jiguang.sdk:jpush:3.5.4'
+    /*极光IM*/
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'
 }

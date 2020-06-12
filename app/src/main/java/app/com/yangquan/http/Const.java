@@ -5,6 +5,7 @@ public class Const {
         public static final String userId = "userId";
         public static final String mobile = "mobile";
         public static final String pwd = "pwd";
+        public static final String im_login = "jimLogin";
     }
 
     public static final class Config {

@@ -30,6 +30,7 @@ import app.com.yangquan.adapter.TestAdapter;
 import app.com.yangquan.base.BaseFragment;
 import app.com.yangquan.bean.UserBean;
 import app.com.yangquan.http.Const;
+import app.com.yangquan.jiguang.im.ImMessageUtil;
 import app.com.yangquan.listener.MainAppBarLayoutListener;
 import app.com.yangquan.util.BigImageUtil;
 import app.com.yangquan.util.PhotoUtil;
@@ -185,6 +186,8 @@ public class MeFragment extends BaseFragment {
                             @Override
                             public void onPositiveClick() {
                                 PreferencesUtils.putSharePre(mContext, Const.SharePre.userId, "");
+                                PreferencesUtils.putSharePre(mContext, Const.SharePre.im_login, false);
+                                ImMessageUtil.getInstance().logoutEMClient();
                                 intent.setClass(mContext, LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);

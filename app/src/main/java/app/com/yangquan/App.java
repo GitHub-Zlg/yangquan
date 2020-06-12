@@ -19,6 +19,9 @@ import com.scwang.smartrefresh.layout.internal.InternalClassics;
 import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
+import app.com.yangquan.http.Const;
+import app.com.yangquan.jiguang.push.ImPushUtil;
+import app.com.yangquan.util.PreferencesUtils;
 
 public class App extends MultiDexApplication {
     private static App mInstance;
@@ -61,6 +64,8 @@ public class App extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        //初始化极光推送
+        ImPushUtil.getInstance().init(this);
         resolute_photo_camera();
     }
 
@@ -73,6 +78,11 @@ public class App extends MultiDexApplication {
             StrictMode.setVmPolicy(builder.build());
             builder.detectFileUriExposure();
         }
+    }
+
+    //获取uid
+    public String getUid() {
+        return PreferencesUtils.getSharePreStr(this, Const.SharePre.userId);
     }
 
     @Override
