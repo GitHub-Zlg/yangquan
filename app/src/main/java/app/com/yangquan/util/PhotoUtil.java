@@ -130,13 +130,13 @@ public class PhotoUtil{
                 .previewImage(true)//是否预览图片
 //                .previewVideo()//是否预览视频
 //                .enablePreviewAudio()//是否预览音频
-                .enableCrop(true)//是否开启裁剪
+                .enableCrop(false)//是否开启裁剪
 //                .cropWH()// 裁剪宽高比,已废弃，改用. cropImageWideHigh()方法
 //                .cropImageWideHigh()// 裁剪宽高比，设置如果大于图片本身宽高则无效
 //                .withAspectRatio()//裁剪比例
 //                .cutOutQuality()// 裁剪输出质量 默认100
                 .freeStyleCropEnabled(true)//裁剪框是否可拖拽
-                .circleDimmedLayer(true)// 是否开启圆形裁剪
+                .circleDimmedLayer(false)// 是否开启圆形裁剪
 //                .setCircleDimmedColor()//设置圆形裁剪背景色值
 //                .setCircleDimmedBorderColor()//设置圆形裁剪边框色值
 //                .setCircleStrokeWidth()//设置圆形裁剪边框粗细

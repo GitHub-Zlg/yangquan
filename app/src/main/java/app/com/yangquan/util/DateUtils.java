@@ -5,6 +5,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtils {
+    private static SimpleDateFormat sFormat;
+    private static SimpleDateFormat sFormat2;
+    static {
+        sFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        sFormat2 = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
+    }
+    public static String getCurTimeString() {
+        return sFormat.format(new Date());
+    }
     /**
      * 比较两个日期的大小，日期格式为yyyy-MM-dd
      *

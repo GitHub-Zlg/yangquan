@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="20dp">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingTop="3dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/gray3"
+        android:textSize="13dp"
+        android:visibility="gone" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/time"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="15dp"
+        android:scaleType="centerCrop"
+        app:riv_oval="true" />
+
+    <ImageView
+        android:id="@+id/icon_fail"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignTop="@id/avatar"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/bubbleLayout_right"
+        android:src="@mipmap/icon_chat_msg_warn"
+        android:visibility="invisible" />
+
+    <app.com.yangquan.view.MyLineatLayout
+        android:id="@+id/bubbleLayout_right"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignTop="@id/avatar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="65dp"
+        android:background="@color/blue"
+        android:gravity="right"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp">
+
+        <View
+            android:id="@+id/v_chat_item_friend_audio_leng"
+            android:layout_width="1pt"
+            android:layout_height="1pt"></View>
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="5''"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
+
+        <app.com.yangquan.view.WechatAudioPlayView
+            android:id="@+id/weplay"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            app:color="@color/colorWhite"
+            app:isReceiver="false" />
+
+
+    </app.com.yangquan.view.MyLineatLayout>
+
+
+    <FrameLayout
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_alignTop="@id/bubbleLayout_right"
+        android:layout_gravity="center_vertical"
+        android:layout_toLeftOf="@+id/bubbleLayout_right"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="7dp">
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/anim_loading"
+            android:indeterminateOnly="true"
+            android:visibility="invisible" />
+    </FrameLayout>
+</RelativeLayout>

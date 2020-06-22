@@ -15,9 +15,9 @@
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
-                app:elevation="@dimen/dp_0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:elevation="0dp"
                 android:background="@android:color/white"
                 app:layout_behavior="app.com.yangquan.view.AppBarLayoutOverScrollViewBehavior">
 

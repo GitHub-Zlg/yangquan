@@ -7,12 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.zhouwei.library.CustomPopWindow;
-import com.luck.picture.lib.PictureSelector;
-import com.luck.picture.lib.animators.AnimationType;
-import com.luck.picture.lib.config.PictureConfig;
-import com.luck.picture.lib.config.PictureMimeType;
-import com.luck.picture.lib.entity.LocalMedia;
-import com.luck.picture.lib.listener.OnResultCallbackListener;
 
 import java.util.List;
 

@@ -91,6 +91,7 @@ public class MeFragment extends BaseFragment {
         initRecycler();
     }
 
+    //获取个人信息
     private void getUserInfo() {
         Map<String, Object> map = new HashMap<>();
         map.put("uid", PreferencesUtils.getSharePreStr(mContext, Const.SharePre.userId));
@@ -186,7 +187,6 @@ public class MeFragment extends BaseFragment {
                             @Override
                             public void onPositiveClick() {
                                 PreferencesUtils.putSharePre(mContext, Const.SharePre.userId, "");
-                                PreferencesUtils.putSharePre(mContext, Const.SharePre.im_login, false);
                                 ImMessageUtil.getInstance().logoutEMClient();
                                 intent.setClass(mContext, LoginActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

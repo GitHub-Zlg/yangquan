@@ -44,9 +44,16 @@
         <activity
             android:name=".activity.PubActivity"
             android:screenOrientation="portrait" />
+        <!--聊天页-->
+        <activity
+            android:name=".activity.ChatActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden"
+            ></activity>
 
-
-        <!-- android 7.0拍照 -->
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
             tools:replace="android:exported"
@@ -92,8 +99,8 @@
             android:name="JPUSH_APPKEY"
             android:value="d7564a40af5ef6dd8d4ace34" />
 
-        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
-        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+
+        <!-- android 7.0拍照 -->
         <provider
             android:name=".util.MyFileProvider"
             android:authorities="app.com.yangquan.fileprovider"

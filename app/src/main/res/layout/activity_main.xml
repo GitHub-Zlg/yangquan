@@ -9,34 +9,59 @@
         android:id="@+id/fl_main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_bar" />
+        android:layout_above="@+id/bottom_navigation_view_linear" />
 
-    <liang.lollipop.ltabview.LTabView
-        android:id="@+id/tabView"
+    <com.gauravk.bubblenavigation.BubbleNavigationLinearView
+        android:id="@+id/bottom_navigation_view_linear"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
-        android:visibility="gone" />
+        android:padding="5dp">
 
-    <nl.joery.animatedbottombar.AnimatedBottomBar
-        android:id="@+id/bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#bce2e8"
-        android:layout_alignParentBottom="true"
-        app:abb_animationDuration="450"
-        app:abb_animationInterpolator="@android:anim/accelerate_decelerate_interpolator"
-        app:abb_indicatorAnimation="slide"
-        app:abb_indicatorAppearance="round"
-        app:abb_indicatorColor="#bce2e8"
-        app:abb_indicatorHeight="2dp"
-        app:abb_indicatorLocation="bottom"
-        app:abb_indicatorMargin="1dp"
-        app:abb_selectedIndex="0"
-        app:abb_selectedTabType="text"
-        app:abb_tabAnimation="slide"
-        app:abb_tabColorSelected="#eaedf7"
-        app:abb_tabs="@menu/clock_tabs"
-        app:abb_textStyle="bold" />
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/l_item_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bt_active="true"
+            app:bt_colorActive="@color/red_active"
+            app:bt_colorInactive="@color/red_inactive"
+            app:bt_icon="@drawable/ic_favorite_border_black_24dp"
+            app:bt_shape="@drawable/transition_background_drawable_home"
+            app:bt_title="首页" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/l_item_trends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            app:bt_colorActive="@color/blue_active"
+            app:bt_colorInactive="@color/blue_inactive"
+            app:bt_icon="@drawable/ic_whatshot_black_24dp"
+            app:bt_shape="@drawable/transition_background_drawable_search"
+            app:bt_title="广场" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/l_item_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            app:bt_colorActive="@color/green_active"
+            app:bt_colorInactive="@color/green_inactive"
+            app:bt_icon="@drawable/ic_playlist"
+            app:bt_shape="@drawable/transition_background_drawable_list"
+            app:bt_title="通知" />
+
+        <com.gauravk.bubblenavigation.BubbleToggleView
+            android:id="@+id/l_item_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            app:bt_colorActive="@color/purple_active"
+            app:bt_colorInactive="@color/purple_inactive"
+            app:bt_icon="@drawable/ic_person_black_24dp"
+            app:bt_shape="@drawable/transition_background_drawable_person"
+            app:bt_title="家" />
+    </com.gauravk.bubblenavigation.BubbleNavigationLinearView>
 </RelativeLayout>

@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 import app.com.yangquan.http.Const;
+import app.com.yangquan.jiguang.im.ImMessageUtil;
 import app.com.yangquan.jiguang.push.ImPushUtil;
 import app.com.yangquan.util.PreferencesUtils;
 
@@ -66,6 +67,8 @@ public class App extends MultiDexApplication {
         mInstance = this;
         //初始化极光推送
         ImPushUtil.getInstance().init(this);
+        //初始化极光IM
+        ImMessageUtil.getInstance().init();
         resolute_photo_camera();
     }
 

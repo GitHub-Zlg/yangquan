@@ -220,6 +220,8 @@ public class LoginActivity extends BaseActivity implements LoadingButton.OnLoadi
         switch (view.getId()) {
             case R.id.register:  //注册
                 startActivity(new Intent(mContext, RegisterActivity.class));
+//                startActivity(new Intent(mContext, ChatActivity.class));
+
                 break;
             case R.id.tv_login: //登录
                 if (!isMobileNO(etAccount.getText().toString().trim())) {

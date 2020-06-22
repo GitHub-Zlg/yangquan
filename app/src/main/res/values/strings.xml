@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">羊quan圈</string>
+    <string name="FILE_PROVIDER">app.com.yangquan.fileprovider</string>
 </resources>

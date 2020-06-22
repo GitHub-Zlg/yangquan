@@ -1,42 +1,36 @@
 package app.com.yangquan.fragment;
 
-import android.Manifest;
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import app.com.yangquan.R;
 import app.com.yangquan.activity.PubActivity;
-import app.com.yangquan.adapter.TrendsAdapter;
+import app.com.yangquan.adapter.FragmentAdapter;
 import app.com.yangquan.base.BaseFragment;
-import app.com.yangquan.bean.TrendBean;
-import app.com.yangquan.http.Const;
+import app.com.yangquan.bean.FragmentInfo;
 import butterknife.BindView;
 import butterknife.OnClick;
-import pub.devrel.easypermissions.EasyPermissions;
 
 public class TrendsFragment extends BaseFragment {
-    @BindView(R.id.recycler)
-    RecyclerView recycler;
-    @BindView(R.id.refresh)
-    SmartRefreshLayout refresh;
-    @BindView(R.id.tv_pub)
-    TextView tvPub;
-    private TrendsAdapter adapter;
-    private String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    private int pageNum = 1;
-    private boolean isRefresh;
+    @BindView(R.id.tab)
+    SmartTabLayout tab;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+    ArrayList<FragmentInfo> pages = new ArrayList<>();
+    @BindView(R.id.iv_pub)
+    ImageView ivPub;
+    @BindView(R.id.ll_search)
+    LinearLayout llSearch;
 
     @Override
     protected int getLayout() {
@@ -45,91 +39,81 @@ public class TrendsFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        initRecycer();
-        initRefresh();
-        refreshData();
-    }
-
-    //刷新
-    private void refreshData(){
-        isRefresh = true;
-        Map<String,Object> map = new HashMap<>();
-        map.put("page","1");
-        post(Const.Config.trendslist,1,map);
-     }
-
-     //加载
-    private void loadData(){
-        isRefresh = false;
-        pageNum++;
-        Map<String,Object> map = new HashMap<>();
-        map.put("page",pageNum+"");
-        post(Const.Config.trendslist,1,map);
+        initViewPager();
     }
 
     @Override
     protected void onSuccess(int flag, String message) {
-        if(flag == 1){
-            TrendBean bean = new Gson().fromJson(message, TrendBean.class);
-            if(bean!=null){
-                if(isRefresh){
-                    adapter.setNewData(bean.getData());
-                    refresh.finishRefresh();
-                }else {
-                    adapter.addData(bean.getData());
-                    refresh.finishLoadMore();
-                }
-            }
-        }
+
     }
 
     @Override
     protected void onFailure(int flag, String error) {
-        if(isRefresh){
-            refresh.finishRefresh();
-        }else {
-            refresh.finishLoadMore();
+
+    }
+
+    private void initViewPager() {
+        List<String> title = new ArrayList<>();
+        title.add("推荐");
+        title.add("关注");
+
+        for (int i = 0; i < title.size(); i++) {
+            FragmentInfo titleBean = null;
+            if (i == 0) {
+                titleBean = new FragmentInfo(new RecommFragment(), title.get(0));
+            } else if (i == 1) {
+                titleBean = new FragmentInfo(new FollowTrendsFragment(), title.get(1));
+            }
+            pages.add(titleBean);
         }
-    }
+        FragmentAdapter adapter = new FragmentAdapter(getChildFragmentManager(), pages);
+        viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(2);
 
-    //初始化recycler
-    private void initRecycer() {
-        // 创建StaggeredGridLayoutManager实例
-        adapter = new TrendsAdapter();
-        recycler.setLayoutManager(new LinearLayoutManager(mContext));
-        recycler.setAdapter(adapter);
-    }
-
-    //获取权限
-    private void getPermission() {
-        if (EasyPermissions.hasPermissions(mContext, permissions)) {
-            //已经打开权限
-            Intent intent   = new Intent(mContext, PubActivity.class);
-            startActivity(intent);
-        } else {
-            //没有打开相关权限、申请权限
-            EasyPermissions.requestPermissions(this, "需要获取您的相册、照相使用权限", 1, permissions);
-        }
-    }
-
-    private void initRefresh() {
-        refresh.setOnRefreshListener(new OnRefreshListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                refreshData();
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                TextView title1 = (TextView) tab.getTabAt(0);
+                TextView title2 = (TextView) tab.getTabAt(1);
+                switch (position) {
+                    case 0:
+                        title1.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                        title2.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                        break;
+                    case 1:
+                        title1.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
+                        title2.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                viewPager.setCurrentItem(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
 
-        refresh.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                loadData();
-            }
-        });
+        tab.setViewPager(viewPager);
+        TextView title1 = (TextView) tab.getTabAt(0);
+        title1.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+        viewPager.setCurrentItem(0);
     }
 
-    @OnClick(R.id.tv_pub)
-    public void onViewClicked() {
-       getPermission();
+    @OnClick({R.id.iv_pub, R.id.ll_search})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_pub:
+                startActivity(new Intent(mContext, PubActivity.class));
+                break;
+            case R.id.ll_search:
+
+                break;
+        }
     }
 }

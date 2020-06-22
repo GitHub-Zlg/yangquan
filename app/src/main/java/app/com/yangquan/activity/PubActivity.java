@@ -53,8 +53,6 @@ public class PubActivity extends BaseActivity implements BGASortableNinePhotoLay
 
     @Override
     protected void init() {
-        PhotoUtil.picture(mContext, Const.Config.IMG_MAX-snplMomentAddPhotos.getItemCount());
-        // 设置拖拽排序控件的代理
         snplMomentAddPhotos.setDelegate(this);
     }
 
@@ -80,7 +78,7 @@ public class PubActivity extends BaseActivity implements BGASortableNinePhotoLay
 
     @Override
     protected void onFailure(int flag, String error) {
-
+        ToastUtil.show("服务器错误码1003！");
     }
 
 

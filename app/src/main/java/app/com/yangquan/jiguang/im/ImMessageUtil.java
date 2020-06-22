@@ -19,6 +19,7 @@ import java.util.Map;
 import app.com.yangquan.App;
 import app.com.yangquan.http.Const;
 import app.com.yangquan.util.PreferencesUtils;
+import app.com.yangquan.view.MyImageView;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.DownloadCompletionCallback;
 import cn.jpush.im.android.api.content.CustomContent;
@@ -140,14 +141,14 @@ public class ImMessageUtil {
      * 登录极光IM
      */
     public void loginJMessage(String uid, Context context) {
-        if (PreferencesUtils.getSharePreBoolean(context, Const.SharePre.im_login)) {
+       /* if (PreferencesUtils.getSharePreBoolean(context, Const.SharePre.im_login)) {
             Log.e(TAG, "极光IM已经登录了");
             JMessageClient.registerEventReceiver(ImMessageUtil.this);
             //EventBus.getDefault().post(new ImLoginEvent(true));
             Log.e("zlg", "登录刷新未读");
             refreshAllUnReadMsgCount();
             return;
-        }
+        }*/
         final String imUid = getImUid(uid);
         Log.e(TAG, "登录刷新未读2=====" + imUid);
 
@@ -161,11 +162,13 @@ public class ImMessageUtil {
                 } else if (code == 0) {
                     Log.e(TAG, "极光IM登录成功");
 //                    SpUtil.getInstance().setBooleanValue(SpUtil.IM_LOGIN, true);
-                    PreferencesUtils.putSharePre(context, Const.SharePre.im_login, true);
                     JMessageClient.registerEventReceiver(ImMessageUtil.this);
                     //EventBus.getDefault().post(new ImLoginEvent(true));
                     Log.e(TAG, "登录刷新未读2=====" + imUid);
                     refreshAllUnReadMsgCount();
+                }else {
+                    Log.e("zlg","登录失败后再次登录");
+                    loginJMessage(uid,context);
                 }
             }
         });
@@ -252,7 +255,6 @@ public class ImMessageUtil {
         return list;
     }
 
-
     /**
      * 获取消息列表
      */
@@ -279,7 +281,7 @@ public class ImMessageUtil {
             list.addAll(msgList);
             msgList = list;
         }
-        String uid = PreferencesUtils.getSharePreStr(App.getInstance(), Const.SharePre.userId);
+        String uid = "yangquan"+PreferencesUtils.getSharePreStr(App.getInstance(), Const.SharePre.userId);
         for (Message msg : msgList) {
             String from = getAppUid(msg);
             int type = getMessageType(msg);
@@ -432,6 +434,7 @@ public class ImMessageUtil {
             imUserMsgEvent.setHeadImg(avatar);
             EventBus.getDefault().post(imUserMsgEvent);
             Log.e("zlg", "头像====" + avatar);
+            Log.e("zlg", "昵称====" + nickname);
             refreshAllUnReadMsgCount();
         }
     }
@@ -518,7 +521,7 @@ public class ImMessageUtil {
         if (msg == null) {
             return type;
         }
-        String uid = App.getInstance().getUid();
+        String uid = "yangquan"+App.getInstance().getUid();
         MessageContent content = msg.getContent();
         if (content == null) {
             return type;

@@ -278,7 +278,7 @@ public class UpHeadActivity extends BaseActivity implements LoadingButton.OnLoad
             }
         });
 
-        //从相册选择
+        //拍照
         contentView.findViewById(R.id.tv_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -352,7 +352,7 @@ public class UpHeadActivity extends BaseActivity implements LoadingButton.OnLoad
             switch (requestCode) {
                 case PictureConfig.CHOOSE_REQUEST:
                     List<LocalMedia> localMedia = PictureSelector.obtainMultipleResult(data);
-                    Glide.with(mContext).load(localMedia.get(0).getCutPath()).into(rivAvater);
+                    Glide.with(mContext).load(localMedia.get(0).getCompressPath()).into(rivAvater);
                     imgPath = localMedia.get(0).getCompressPath();
                     uplod(localMedia.get(0).getCompressPath());
                     break;

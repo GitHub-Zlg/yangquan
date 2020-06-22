@@ -18,8 +18,22 @@
         <attr name="endFailDrawable" format="reference" />
         <attr name="endDrawableAppearTime" format="integer" />
         <attr name="endDrawableDuration" format="integer" />
-
-
     </declare-styleable>
-
+    <!--聊天气泡-->
+    <declare-styleable name="BubbleLayout">
+        <attr name="bubbleBgColor" format="color"/>
+        <attr name="bubbleRadius" format="dimension"/>
+        <attr name="arrowWidth" format="dimension"/>
+        <attr name="arrowHeight" format="dimension"/>
+        <attr name="arrowPositionY" format="dimension"/>
+        <attr name="arrowDirecrion" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+    </declare-styleable>
+    <!--聊天语音播放-->
+    <declare-styleable name="WechatAudioPlayView">
+        <attr name="color" format="color"></attr>
+        <attr name="isReceiver" format="boolean"></attr>
+    </declare-styleable>
 </resources>

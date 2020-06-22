@@ -1,6 +1,8 @@
 package app.com.yangquan.fragment;
 
+import android.content.Intent;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -12,6 +14,7 @@ import java.util.Map;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import app.com.yangquan.R;
+import app.com.yangquan.activity.ChatActivity;
 import app.com.yangquan.adapter.BlindAdapter;
 import app.com.yangquan.base.BaseFragment;
 import app.com.yangquan.bean.BlindBean;
@@ -23,12 +26,15 @@ import app.com.yangquan.view.slide.OnSlideListener;
 import app.com.yangquan.view.slide.SlideLayoutManager;
 import app.com.yangquan.view.slide.SmileView;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class BlindFragemnt extends BaseFragment {
     @BindView(R.id.recycler)
     RecyclerView recycler;
     @BindView(R.id.smile_view)
     SmileView smileView;
+    @BindView(R.id.tv_test)
+    TextView tvTest;
     private ItemTouchHelperCallback mItemTouchHelperCallback;
     private int mLikeCount = 50;
     private int mDislikeCount = 50;
@@ -62,8 +68,8 @@ public class BlindFragemnt extends BaseFragment {
         if (flag == 1) {
             BlindBean bean = new Gson().fromJson(message, BlindBean.class);
             if (bean != null) {
-                list.addAll(bean.getData());
-                adapter.setNewData(list);
+//                list.addAll(bean.getData());
+//                adapter.setNewData(list);
             }
         }
     }
@@ -114,5 +120,10 @@ public class BlindFragemnt extends BaseFragment {
                 tablelist(page++);
             }
         });
+    }
+
+    @OnClick(R.id.tv_test)
+    public void onViewClicked() {
+        startActivity(new Intent(mContext, ChatActivity.class));
     }
 }
