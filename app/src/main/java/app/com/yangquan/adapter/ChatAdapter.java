@@ -77,28 +77,14 @@ public class ChatAdapter extends BaseMultiItemQuickAdapter<ImMessageBean> {
         }
         switch (holder.getItemViewType()) {
             case ImMessageBean.TYPE_TEXT_L:
-                Glide.with(mContext).load(R.mipmap.icon_woman).into((ImageView) holder.getView(R.id.avatar));
+                Glide.with(mContext).load(bean.getRawMessage().getFromUser().getAvatar()).into((ImageView) holder.getView(R.id.avatar));
                 text = ((TextContent) bean.getRawMessage().getContent()).getText();
                 holder.setText(R.id.text, TextRender.renderChatMessage(text));
-                holder.getView(R.id.text).setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-//                        showPopWindows(view, 1, bean, holder.getAdapterPosition());
-                        return false;
-                    }
-                });
                 break;
             case ImMessageBean.TYPE_TEXT_R:
-                Glide.with(mContext).load(R.mipmap.icon_man).into((ImageView) holder.getView(R.id.avatar));
+                Glide.with(mContext).load(bean.getRawMessage().getFromUser().getAvatar()).into((ImageView) holder.getView(R.id.avatar));
                 text = ((TextContent) bean.getRawMessage().getContent()).getText();
                 holder.setText(R.id.text, TextRender.renderChatMessage(text));
-                holder.getView(R.id.text).setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-//                        showPopWindows(view, 2, bean, holder.getAdapterPosition());
-                        return false;
-                    }
-                });
                 if(bean.isLoading()){
                     holder.getView(R.id.loading).setVisibility(View.VISIBLE);
                 }else {
@@ -112,7 +98,7 @@ public class ChatAdapter extends BaseMultiItemQuickAdapter<ImMessageBean> {
                 break;
 
             case ImMessageBean.TYPE_IMAGE_L:
-                Glide.with(mContext).load(R.mipmap.icon_woman).into((ImageView) holder.getView(R.id.avatar));
+                Glide.with(mContext).load(bean.getRawMessage().getFromUser().getAvatar()).into((ImageView) holder.getView(R.id.avatar));
                 imageFile = bean.getImageFile();
                 mImgs.setFile(imageFile);
                 if (imageFile != null) {
@@ -122,16 +108,10 @@ public class ChatAdapter extends BaseMultiItemQuickAdapter<ImMessageBean> {
                 } else {
                     ImMessageUtil.getInstance().displayImageFile(bean, mImgs);
                 }
-              /*  holder.getView(R.id.riv_img_square).setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        showPopWindows(view, 3, bean, holder.getAdapterPosition());
-                        return false;
-                    }
-                });*/
+
                 break;
             case ImMessageBean.TYPE_IMAGE_R:
-                Glide.with(mContext).load(R.mipmap.icon_man).into((ImageView) holder.getView(R.id.avatar));
+                Glide.with(mContext).load(bean.getRawMessage().getFromUser().getAvatar()).into((ImageView) holder.getView(R.id.avatar));
                 imageFile = bean.getImageFile();
                 mImgs.setFile(imageFile);
                 if (imageFile != null) {
@@ -141,13 +121,6 @@ public class ChatAdapter extends BaseMultiItemQuickAdapter<ImMessageBean> {
                 } else {
                     ImMessageUtil.getInstance().displayImageFile(bean, mImgs);
                 }
-              /*  holder.getView(R.id.riv_img_square).setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View view) {
-                        showPopWindows(view, 4, bean, holder.getAdapterPosition());
-                        return false;
-                    }
-                });*/
 
                 if(bean.isLoading()){
                     holder.getView(R.id.loading).setVisibility(View.VISIBLE);

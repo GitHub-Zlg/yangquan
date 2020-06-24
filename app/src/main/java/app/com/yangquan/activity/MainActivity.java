@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.BubbleToggleView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
+import com.tapadoo.alerter.Alerter;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -173,7 +174,7 @@ public class MainActivity extends BaseFragmentActivity {
                 this.finish();
             } else {
                 mIsExit = true;
-                ToastUtil.show("再按一次退出程序");
+                Alerter.create(MainActivity.this).setTitle("再按一次退出程序").setBackgroundColorRes(R.color.blue_inactive).show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

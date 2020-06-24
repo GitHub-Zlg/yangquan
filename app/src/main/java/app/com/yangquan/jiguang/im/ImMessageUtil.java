@@ -281,7 +281,7 @@ public class ImMessageUtil {
             list.addAll(msgList);
             msgList = list;
         }
-        String uid = "yangquan"+PreferencesUtils.getSharePreStr(App.getInstance(), Const.SharePre.userId);
+        String uid = PreferencesUtils.getSharePreStr(App.getInstance(), Const.SharePre.userId);
         for (Message msg : msgList) {
             String from = getAppUid(msg);
             int type = getMessageType(msg);
@@ -425,11 +425,8 @@ public class ImMessageUtil {
             }
             imUserMsgEvent.setUnReadCount(getUnReadMsgCount(uid));
             imUserMsgEvent.setLastTime(getMessageTimeString(msg));
-            UserInfo userInfo = (UserInfo) msg.getTargetInfo();
-//            String avatar = msg.getFromUser().getAvatar();
-//            String nickname = msg.getFromUser().getNickname();
-            String nickname = userInfo.getNickname();
-            String avatar = userInfo.getAvatar();
+            String avatar = msg.getFromUser().getAvatar();
+            String nickname = msg.getFromUser().getNickname();
             imUserMsgEvent.setNikeName(nickname);
             imUserMsgEvent.setHeadImg(avatar);
             EventBus.getDefault().post(imUserMsgEvent);
@@ -521,7 +518,7 @@ public class ImMessageUtil {
         if (msg == null) {
             return type;
         }
-        String uid = "yangquan"+App.getInstance().getUid();
+        String uid =App.getInstance().getUid();
         MessageContent content = msg.getContent();
         if (content == null) {
             return type;

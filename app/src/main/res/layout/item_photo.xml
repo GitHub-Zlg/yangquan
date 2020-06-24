@@ -7,8 +7,8 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/iv_photo_round"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_centerInParent="true"
@@ -18,8 +18,8 @@
 
     <TextView
         android:id="@+id/tv_bg"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:background="@drawable/bg_photo_num"
         android:gravity="center"
         android:textColor="@color/colorWhite"

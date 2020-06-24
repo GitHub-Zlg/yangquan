@@ -62,6 +62,6 @@
             app:bt_colorInactive="@color/purple_inactive"
             app:bt_icon="@drawable/ic_person_black_24dp"
             app:bt_shape="@drawable/transition_background_drawable_person"
-            app:bt_title="家" />
+            app:bt_title="家里" />
     </com.gauravk.bubblenavigation.BubbleNavigationLinearView>
 </RelativeLayout>

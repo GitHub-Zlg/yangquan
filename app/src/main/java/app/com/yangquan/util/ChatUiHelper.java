@@ -6,10 +6,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.os.Build;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,13 +24,17 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+
+
+import java.util.ArrayList;
+
 import java.util.List;
 
 import androidx.viewpager.widget.ViewPager;
 import app.com.yangquan.R;
 import app.com.yangquan.adapter.ImChatFacePagerAdapter;
 import app.com.yangquan.listener.OnFaceClickListener;
-import app.com.yangquan.listener.SoftKeyBoardListener;
 import app.com.yangquan.view.WrapContentHeightViewPager;
 
 public class ChatUiHelper {
@@ -42,23 +47,28 @@ public class ChatUiHelper {
     private LinearLayout mAddLayout;//添加布局
     private TextView mSendBtn;//发送按钮
     private View mAddButton;//加号按钮
-    private Button mAudioButton;//录音按钮
 
     private EditText mEditText;
     private InputMethodManager mInputManager;
     private SharedPreferences mSp;
     private ImageView mIvEmoji;
+
     public ChatUiHelper() {
 
     }
 
     public static ChatUiHelper with(Activity activity) {
         ChatUiHelper mChatUiHelper = new ChatUiHelper();
+        //   AndroidBug5497Workaround.assistActivity(activity);
         mChatUiHelper.mActivity = activity;
         mChatUiHelper.mInputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         mChatUiHelper.mSp = activity.getSharedPreferences(SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
+
+
         return mChatUiHelper;
     }
+
+    public static final int EVERY_PAGE_SIZE = 21;
 
 
     public ChatUiHelper bindEmojiData() {
@@ -126,16 +136,26 @@ public class ChatUiHelper {
         return this;
     }
 
+    public static boolean isMIUI() {
+        String manufacturer = Build.MANUFACTURER;
+        //这个字符串可以自己定义,例如判断华为就填写huawei,魅族就填写meizu
+        if ("xiaomi".equalsIgnoreCase(manufacturer)) {
+            return true;
+        }
+        return false;
+    }
+
 
     //绑定整体界面布局
-    public ChatUiHelper bindContentLayout(LinearLayout bottomLayout) {
+    public ChatUiHelper  bindContentLayout(LinearLayout bottomLayout) {
         mContentLayout = bottomLayout;
         return this;
     }
 
 
+
     //绑定输入框
-    public ChatUiHelper bindEditText(EditText editText) {
+    public ChatUiHelper  bindEditText(EditText editText) {
         mEditText = editText;
         mEditText.requestFocus();
         mEditText.setOnTouchListener(new View.OnTouchListener() {
@@ -183,33 +203,34 @@ public class ChatUiHelper {
     }
 
     //绑定底部布局
-    public ChatUiHelper bindBottomLayout(RelativeLayout bottomLayout) {
+    public ChatUiHelper  bindBottomLayout(RelativeLayout bottomLayout) {
         mBottomLayout = bottomLayout;
         return this;
     }
 
 
     //绑定表情布局
-    public ChatUiHelper bindEmojiLayout(LinearLayout emojiLayout) {
+    public ChatUiHelper  bindEmojiLayout(LinearLayout emojiLayout) {
         mEmojiLayout = emojiLayout;
         return this;
     }
 
     //绑定添加布局
-    public ChatUiHelper bindAddLayout(LinearLayout addLayout) {
+    public ChatUiHelper  bindAddLayout(LinearLayout addLayout) {
         mAddLayout = addLayout;
         return this;
     }
 
     //绑定发送按钮
-    public ChatUiHelper bindttToSendButton(TextView sendbtn) {
-        mSendBtn = sendbtn;
+    public ChatUiHelper  bindttToSendButton(TextView sendbtn) {
+        mSendBtn=sendbtn;
         return this;
     }
 
+
     //绑定表情按钮点击事件
-    public ChatUiHelper bindToEmojiButton(ImageView emojiBtn) {
-        mIvEmoji = emojiBtn;
+    public ChatUiHelper bindToEmojiButton(ImageView emojiBtn){
+        mIvEmoji=emojiBtn;
         emojiBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,7 +239,7 @@ public class ChatUiHelper {
                     if (mAddLayout.isShown()) {
                         showEmotionLayout();
                         hideMoreLayout();
-                        return;
+                        return ;
                     }
                 } else if (mEmojiLayout.isShown() && !mAddLayout.isShown()) {
                     mIvEmoji.setImageResource(R.mipmap.ic_emoji);
@@ -261,6 +282,8 @@ public class ChatUiHelper {
     }
 
 
+
+
     //绑定底部加号按钮
     public ChatUiHelper bindToAddButton(View addButton) {
         mAddButton = addButton;
@@ -268,26 +291,23 @@ public class ChatUiHelper {
             @Override
             public void onClick(View v) {
                 mEditText.clearFocus();
-                if (mBottomLayout.isShown()) {
-                    if (mAddLayout.isShown()) {
+                if (mBottomLayout.isShown()){
+                    if (mAddLayout.isShown()){
                         lockContentHeight();//显示软件盘时，锁定内容高度，防止跳闪。
                         hideBottomLayout(true);//隐藏表情布局，显示软件盘
                         unlockContentHeightDelayed();//软件盘显示后，释放内容高度
-                    } else {
+                    }else{
                         showMoreLayout();
                         hideEmotionLayout();
                     }
-                } else {
-                    //小米手机这里判断软键盘显示状态不准。高度也有问题。
+                }else{
                     if (isSoftInputShown()) {//同上
                         hideEmotionLayout();
                         showMoreLayout();
                         lockContentHeight();
-                        Log.e("zlg", "软键盘显示？");
                         showBottomLayout();
                         unlockContentHeightDelayed();
                     } else {
-                        Log.e("zlg", "软键盘不显示？");
                         showMoreLayout();
                         hideEmotionLayout();
                         showBottomLayout();//两者都没显示，直接显示表情布局
@@ -297,6 +317,7 @@ public class ChatUiHelper {
         });
         return this;
     }
+
 
 
     private void hideMoreLayout() {
@@ -324,15 +345,14 @@ public class ChatUiHelper {
 
     private void showBottomLayout() {
         int softInputHeight = getSupportSoftInputHeight();
-        if (softInputHeight <= 0) {
+        if (softInputHeight == 0) {
             softInputHeight = mSp.getInt(SHARE_PREFERENCE_TAG, dip2Px(270));
         }
-        Log.e("zlg","softInputHeight======"+softInputHeight);
         hideSoftInput();
         mBottomLayout.getLayoutParams().height = softInputHeight;
         mBottomLayout.setVisibility(View.VISIBLE);
-        Log.e("zlg","显示BottomLayout");
     }
+
 
 
     private void showEmotionLayout() {
@@ -344,7 +364,6 @@ public class ChatUiHelper {
         mEmojiLayout.setVisibility(View.GONE);
         mIvEmoji.setImageResource(R.mipmap.ic_emoji);
     }
-
     /**
      * 是否显示软件盘
      *
@@ -359,6 +378,7 @@ public class ChatUiHelper {
         int px = (int) (dip * density + 0.5f);
         return px;
     }
+
 
 
     /**
@@ -402,7 +422,6 @@ public class ChatUiHelper {
         }
         return softInputHeight;
     }
-
 
     public void showSoftInput() {
         mEditText.requestFocus();
@@ -449,4 +468,5 @@ public class ChatUiHelper {
             return 0;
         }
     }
+
 }

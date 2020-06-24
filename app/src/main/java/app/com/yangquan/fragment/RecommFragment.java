@@ -54,18 +54,18 @@ public class RecommFragment extends BaseFragment {
     private void refreshData() {
         isRefresh = true;
         pageNum = 1;
-        Map<String, Object> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("page", "1");
-        post(Const.Config.trendslist, 1, map);
+        get(Const.Config.trendslist, 1, map);
     }
 
     //加载
     private void loadData() {
         isRefresh = false;
         pageNum++;
-        Map<String, Object> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("page", pageNum + "");
-        post(Const.Config.trendslist, 1, map);
+        get(Const.Config.trendslist, 1, map);
     }
 
     @Override

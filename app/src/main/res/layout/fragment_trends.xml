@@ -18,6 +18,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"
+            android:background="?android:attr/selectableItemBackground"
             android:src="@mipmap/icon_pub"></ImageView>
 
         <com.ogaclejapan.smarttablayout.SmartTabLayout
@@ -73,6 +74,7 @@
     </LinearLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

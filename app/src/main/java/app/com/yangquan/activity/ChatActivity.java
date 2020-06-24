@@ -110,6 +110,7 @@ public class ChatActivity extends BaseActivity {
     @BindView(R.id.llFace)
     LinearLayout llFace;
     private String uid;
+    private String name;
     private ChatAdapter adapter;
     private boolean isVoice = false;
     private String[] voice_permissions = {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
@@ -127,8 +128,9 @@ public class ChatActivity extends BaseActivity {
         initChatUi();
         EventBus.getDefault().register(this);
         uid = getIntent().getStringExtra("uid");
+        name = getIntent().getStringExtra("name");
         tvRight.setText("设置");
-        tvTitle.setText("火星用户");
+        tvTitle.setText(name);
         initRecycler();
     }
 
@@ -142,21 +144,9 @@ public class ChatActivity extends BaseActivity {
         linearLayoutManager.scrollToPositionWithOffset(adapter.getItemCount() - 1, -DpUtil.dp2px(20));
     }
 
-    //获取个人信息
-    private void getUserInfo() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("uid", uid);
-        post(Const.Config.userInfo, 1, map);
-    }
-
     @Override
     protected void onSuccess(int flag, String message) {
-        if (flag == 1) {
-            UserBean bean = new Gson().fromJson(message, UserBean.class);
-            if (bean != null) {
-                tvTitle.setText(bean.getData().getNickname());
-            }
-        }
+
     }
 
     @Override

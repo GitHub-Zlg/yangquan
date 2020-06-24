@@ -26,17 +26,16 @@ public class ChatListAdapter extends BaseQuickAdapter<ImUserMsgEvent> {
 
     @Override
     protected void convert(BaseViewHolder holder, ImUserMsgEvent bean) {
-        Glide.with(mContext).load(R.mipmap.icon_avater).placeholder(R.mipmap.icon_avater).into((ImageView) holder.getView(R.id.avater));
+        Glide.with(mContext).load(bean.getHeadImg()).placeholder(R.mipmap.icon_avater).into((ImageView) holder.getView(R.id.avater));
         holder.setText(R.id.tv_time,bean.getLastTime()+"");
         holder.setText(R.id.tv_content,bean.getLastMessage()+"");
-        holder.setText(R.id.tv_name,bean.getUid()+"");
+        holder.setText(R.id.tv_name,bean.getNikeName()+"");
         if(bean.getUnReadCount()>0){
             holder.setText(R.id.tv_unread_num,bean.getUnReadCount()+"");
             holder.setVisible(R.id.tv_unread_num,true);
         }else {
             holder.setVisible(R.id.tv_unread_num,false);
         }
-
 
         holder.getView(R.id.ll_root).setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -78,12 +77,13 @@ public class ChatListAdapter extends BaseQuickAdapter<ImUserMsgEvent> {
                 notifyItemChanged(holder.getAdapterPosition());
                 Intent intent = new Intent(mContext, ChatActivity.class);
                 intent.putExtra("uid",bean.getUid());
+                intent.putExtra("name",bean.getNikeName());
                 mContext.startActivity(intent);
             }
         });
     }
 
-    //弹出pop删除，为了增加好友模块，侧滑删除手势冲突，但是pop删除有一点小问题，暂时使用侧滑
+    //长按弹出pop删除，为了增加好友模块，侧滑删除手势冲突，但是pop删除有一点小问题，暂时使用侧滑，以后处理
     private void showPopup(View v, int position) {
         if (mDemoPopup == null) {
             mDemoPopup = new BasePopup(mContext);

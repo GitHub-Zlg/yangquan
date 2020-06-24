@@ -2,8 +2,6 @@ package app.com.yangquan.fragment;
 
 import android.Manifest;
 import android.content.Intent;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,7 +9,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.zhouwei.library.CustomPopWindow;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -26,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import app.com.yangquan.R;
 import app.com.yangquan.activity.LoginActivity;
+import app.com.yangquan.activity.UpDateProfileActivity;
 import app.com.yangquan.adapter.TestAdapter;
 import app.com.yangquan.base.BaseFragment;
 import app.com.yangquan.bean.UserBean;
@@ -33,7 +31,6 @@ import app.com.yangquan.http.Const;
 import app.com.yangquan.jiguang.im.ImMessageUtil;
 import app.com.yangquan.listener.MainAppBarLayoutListener;
 import app.com.yangquan.util.BigImageUtil;
-import app.com.yangquan.util.PhotoUtil;
 import app.com.yangquan.util.PreferencesUtils;
 import app.com.yangquan.util.ToastUtil;
 import app.com.yangquan.view.CoustomDialog;
@@ -151,7 +148,7 @@ public class MeFragment extends BaseFragment {
     private void getPermission(String path) {
         if (EasyPermissions.hasPermissions(mContext, permissions)) {
             //已经打开权限
-            BigImageUtil.single(mContext,path);
+            BigImageUtil.single(mContext, path);
         } else {
             //没有打开相关权限、申请权限
             EasyPermissions.requestPermissions(this, "需要获取您的相册、照相使用权限", 1, permissions);
@@ -176,35 +173,41 @@ public class MeFragment extends BaseFragment {
         mNeedDispatch = true;
     }
 
+    //退出弹窗
+    private void showExitDialog() {
+        dialog = new CoustomDialog(mContext)
+                .setTitle("是否退出当前账号？")
+                .setSingle(true)
+                .setOnClickBottomListener(new CoustomDialog.OnClickBottomListener() {
+                    @Override
+                    public void onPositiveClick() {
+                        PreferencesUtils.putSharePre(mContext, Const.SharePre.userId, "");
+                        ImMessageUtil.getInstance().logoutEMClient();
+                        intent.setClass(mContext, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onNegtiveClick() {
+                        dialog.dismiss();
+                    }
+                });
+        dialog.show();
+    }
+
     @OnClick({R.id.iv_setting, R.id.ll_edit, R.id.avater, R.id.iv_share_top})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_setting:
-                dialog = new CoustomDialog(mContext)
-                        .setTitle("是否退出当前账号？")
-                        .setSingle(true)
-                        .setOnClickBottomListener(new CoustomDialog.OnClickBottomListener() {
-                            @Override
-                            public void onPositiveClick() {
-                                PreferencesUtils.putSharePre(mContext, Const.SharePre.userId, "");
-                                ImMessageUtil.getInstance().logoutEMClient();
-                                intent.setClass(mContext, LoginActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-
-                            @Override
-                            public void onNegtiveClick() {
-                                dialog.dismiss();
-                            }
-                        });
-                dialog.show();
+                showExitDialog();
                 break;
             case R.id.ll_edit:
                 ToastUtil.show("编辑");
                 break;
             case R.id.avater:
-                getPermission(avaterPath);
+                Intent intent = new Intent(mContext, UpDateProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.iv_share_top:
                 ToastUtil.show("分享");

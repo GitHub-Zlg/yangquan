@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="centerInside"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_back"
+            android:text="编辑资料"
+            android:textColor="#434343"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/selector_btn"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="@color/colorWhite"
+            android:textSize="14dp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+                android:id="@+id/avatars"
+                style="@style/WrapWrap"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                app:bga_snpl_deleteDrawable="@mipmap/bga_pp_ic_delete"
+                app:bga_snpl_deleteDrawableOverlapQuarter="false"
+                app:bga_snpl_editable="true"
+                app:bga_snpl_itemCornerRadius="5dp"
+                app:bga_snpl_itemSpanCount="4"
+                app:bga_snpl_itemWhiteSpacing="5dp"
+                app:bga_snpl_itemWidth="80dp"
+                app:bga_snpl_maxItemCount="4"
+                app:bga_snpl_otherWhiteSpacing="80dp"
+                app:bga_snpl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
+                app:bga_snpl_plusDrawable="@mipmap/bga_pp_ic_plus"
+                app:bga_snpl_plusEnable="true"
+                app:bga_snpl_sortable="true" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:elevation="0dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/line"
+                app:cardCornerRadius="5dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingTop="11dp"
+                    android:src="@mipmap/icon_warn" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:padding="10dp"
+                    android:text="提示：第一张作为头像，长按可更改排序。最多可上传4张照片，作为照片墙展现给用户，个人资料内容必须遵守相关法律法规和社区规定，并经过审核才能生效，请严格遵守相关规定，以免违规。"
+                    android:textColor="@color/text"
+                    android:textSize="15dp" />
+            </androidx.cardview.widget.CardView>
+
+            <app.com.yangquan.test.LinedRelativeLayout
+                android:id="@+id/layout_edit"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp">
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/tv_name"
+                    android:layout_marginRight="50dp"
+                    android:background="@null"
+                    android:hint="火星用户"
+                    android:imeOptions="actionNext"
+                    android:maxLength="10"
+                    android:singleLine="true"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/gray3"
+                    android:textSize="13dp" />
+
+                <EditText
+                    android:id="@+id/wechat"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/tv_wechat"
+                    android:layout_marginRight="50dp"
+                    android:background="@null"
+                    android:hint="13512511029"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/gray3"
+                    android:textSize="13dp" />
+
+                <EditText
+                    android:id="@+id/signature"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/tv_signature"
+                    android:layout_marginRight="50dp"
+                    android:background="@null"
+                    android:hint="身高一秒78"
+                    android:imeOptions="actionNext"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/gray3"
+                    android:textSize="13dp" />
+
+                <EditText
+                    android:id="@+id/work"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/tv_work"
+                    android:layout_marginRight="50dp"
+                    android:background="@null"
+                    android:hint="程序员"
+                    android:imeOptions="actionNext"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/gray3"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="昵称:"
+                    android:textColor="@color/blue_active"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_wechat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name"
+                    android:layout_marginTop="10dp"
+                    android:text="微信号:"
+                    android:textColor="@color/blue_active"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_signature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/wechat"
+                    android:layout_marginTop="10dp"
+                    android:text="个性签名:"
+                    android:textColor="@color/blue_active"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_work"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/signature"
+                    android:layout_marginTop="10dp"
+                    android:text="工作:"
+                    android:textColor="@color/blue_active"
+                    android:textSize="15dp" />
+
+            </app.com.yangquan.test.LinedRelativeLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

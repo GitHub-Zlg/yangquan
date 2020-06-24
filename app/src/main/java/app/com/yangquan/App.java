@@ -32,7 +32,7 @@ public class App extends MultiDexApplication {
             @NonNull
             @Override
             public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.refresh_bg_color, R.color.colorPrimaryDark);//全局设置主题颜色
+                layout.setPrimaryColorsId(R.color.refresh_bg_color, R.color.blue);//全局设置主题颜色
                 ClassicsHeader header = new ClassicsHeader(context);
                 TextView tvTile = header.findViewById(InternalClassics.ID_TEXT_TITLE);
                 TextView tvupdate = header.findViewById(ClassicsHeader.ID_TEXT_UPDATE);

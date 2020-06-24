@@ -2,25 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/tv_test"
-        android:layout_width="60dp"
-        android:layout_alignParentRight="true"
-        android:scaleType="centerInside"
-        android:text="测试"
-        android:gravity="center"
-        android:layout_height="70dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
-        android:layout_below="@+id/tv_test"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom" />
 
-    <app.com.yangquan.view.slide.SmileView
-        android:id="@+id/smile_view"
+    <LinearLayout
+        android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="即时匹配"
+            android:padding="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="谁看过我"
+            android:padding="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="换一批"
+            android:padding="20dp"
+            />
+    </LinearLayout>
 </RelativeLayout>

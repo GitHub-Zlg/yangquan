@@ -102,5 +102,7 @@ dependencies {
     implementation 'com.github.razerdp:BasePopup:2.2.2.2'
     /*tab*/
     implementation 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    /*alerter通知*/
+    implementation 'com.tapadoo.android:alerter:5.1.3'
 
 }
