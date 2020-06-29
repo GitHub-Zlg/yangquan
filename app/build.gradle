@@ -38,6 +38,9 @@ android {
 }
 
 dependencies {
+    configurations {
+        all*.exclude group: 'com.google.code.gson'  //解决引入选择器导致的app 和 module 分别引入了 Gson，导致包重复
+    }
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
@@ -84,8 +87,9 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.3'
     /*查看大图*/
     implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.0.1'
-    /*日期选择*/
+    /*日期选择  第一个只有日期，第二个是各种样式的选择器，到时候删一个*/
     implementation 'com.ycuwq.widgets:datepicker:1.0.1'
+    implementation  'com.github.addappcn:android-pickers:2.0.0'
     /*拖拽九宫格*/
     implementation project(path: ':library')
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -104,5 +108,15 @@ dependencies {
     implementation 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     /*alerter通知*/
     implementation 'com.tapadoo.android:alerter:5.1.3'
+    /*alibabfastjson*/
+    implementation 'com.alibaba:fastjson:1.2.48'
+    /*loading*/
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    /*google流式布局*/
+    implementation 'com.google.android:flexbox:1.0.0'
+    /*Switcher*/
+    implementation 'com.bitvale:switcher:1.1.0'
+    /*仿小米卸载app爆炸粒子效果*/
+    implementation 'tyrantgit:explosionfield:1.0.1'
 
 }

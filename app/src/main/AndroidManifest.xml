@@ -56,7 +56,26 @@
             android:name=".activity.UpDateProfileActivity"
             android:windowSoftInputMode="stateVisible|adjustPan"
             android:screenOrientation="portrait" />
-
+        <!--修改昵称页-->
+        <activity
+            android:name=".activity.SetNameActivity"
+            android:screenOrientation="portrait" />
+        <!--设置个性签名页-->
+        <activity
+            android:name=".activity.SetSignatureActivity"
+            android:screenOrientation="portrait" />
+        <!--设置职业页-->
+        <activity
+            android:name=".activity.SetWorkActivity"
+            android:screenOrientation="portrait" />
+        <!--选择标签页-->
+        <activity
+            android:name=".activity.SetTagActivity"
+            android:screenOrientation="portrait" />
+        <!--设置微信号页-->
+        <activity
+            android:name=".activity.SetWechatActivity"
+            android:screenOrientation="portrait" />
 
         <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
         <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->

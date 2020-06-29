@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/rl_top"
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/iv_back"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"
             android:background="?android:attr/selectableItemBackground"
+            android:scaleType="centerInside"
             android:src="@mipmap/icon_back" />
 
         <TextView
@@ -23,20 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:text="动态"
+            android:layout_toRightOf="@+id/iv_back"
+            android:text="昵称"
             android:textColor="#434343"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/tv_right"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:text="发布"
-            android:background="?android:attr/selectableItemBackground"
-            android:textColor="#97D0F0"
             android:textSize="18dp" />
 
         <ImageView
@@ -48,8 +39,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/icon_right1"
-            android:visibility="gone"
-            />
+           />
 
         <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/loading"
@@ -62,4 +52,18 @@
             android:layout_alignParentRight="true"
             app:SpinKit_Color="@color/blue" />
     </RelativeLayout>
-</RelativeLayout>
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="输入昵称"
+        android:maxLength="10"
+        android:textCursorDrawable="@drawable/edit_color"
+        android:background="@null"
+        android:textColor="@color/text"
+        android:singleLine="true"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:textSize="17dp" />
+
+</LinearLayout>

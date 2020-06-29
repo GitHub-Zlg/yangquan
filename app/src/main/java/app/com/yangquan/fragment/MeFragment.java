@@ -13,6 +13,10 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +30,7 @@ import app.com.yangquan.activity.LoginActivity;
 import app.com.yangquan.activity.UpDateProfileActivity;
 import app.com.yangquan.adapter.TestAdapter;
 import app.com.yangquan.base.BaseFragment;
+import app.com.yangquan.bean.UpDateUserInfoEvent;
 import app.com.yangquan.bean.UserBean;
 import app.com.yangquan.http.Const;
 import app.com.yangquan.jiguang.im.ImMessageUtil;
@@ -37,6 +42,7 @@ import app.com.yangquan.view.CoustomDialog;
 import butterknife.BindView;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
+import tyrantgit.explosionfield.ExplosionField;
 
 public class MeFragment extends BaseFragment {
     @BindView(R.id.appBarLayout)
@@ -83,6 +89,7 @@ public class MeFragment extends BaseFragment {
 
     @Override
     protected void init() {
+        EventBus.getDefault().register(this);
         intent = new Intent();
         initListener();
         initRecycler();
@@ -196,6 +203,12 @@ public class MeFragment extends BaseFragment {
         dialog.show();
     }
 
+    //更新用户信息
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUpDateUserInfoEvent(UpDateUserInfoEvent event) {
+        getUserInfo();
+    }
+
     @OnClick({R.id.iv_setting, R.id.ll_edit, R.id.avater, R.id.iv_share_top})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -203,11 +216,13 @@ public class MeFragment extends BaseFragment {
                 showExitDialog();
                 break;
             case R.id.ll_edit:
-                ToastUtil.show("编辑");
+                intent.setClass(mContext,UpDateProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.avater:
-                Intent intent = new Intent(mContext, UpDateProfileActivity.class);
-                startActivity(intent);
+//                BigImageUtil.single(mContext,avaterPath);
+                ExplosionField    mExplosionField = ExplosionField.attach2Window(mContext);
+                mExplosionField.explode(avater);
                 break;
             case R.id.iv_share_top:
                 ToastUtil.show("分享");

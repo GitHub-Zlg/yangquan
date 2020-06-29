@@ -13,6 +13,7 @@
     <color name="blue_light">#501BB2D8</color>
     <color name="black">#434343</color>
     <color name="gray_light">#afafaf</color>
+    <color name="gray_light2">#f7f7f7</color>
     <color name="gray3">#c8c8c8</color>
     <color name="line">#f5f5f5</color>
     <color name="name">#596284</color>
@@ -30,6 +31,7 @@
 
     <color name="green_active">#4caf50</color>
     <color name="green_inactive">#81c784</color>
+    <color name="green_light">#22D2CF</color>
 
     <color name="purple_active">#9c27b0</color>
     <color name="purple_inactive">#ba68c8</color>
@@ -38,5 +40,10 @@
     <color name="blue_bg_light">#e3f2fd</color>
     <color name="green_bg_light">#e8f5e9</color>
     <color name="purple_bg_light">#f3e5f5</color>
+
+    <!--switcher-->
+    <color name="switcher_on_color">#48ea8b</color>
+    <color name="switcher_off_color">#ff4651</color>
+    <color name="switcher_icon_color">@android:color/white</color>
 
 </resources>

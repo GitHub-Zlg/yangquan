@@ -1,11 +1,12 @@
 package app.com.yangquan.bean;
 
-public class UserBean {
+import java.util.List;
 
+public class UserBean {
     /**
      * code : 0
-     * msg : 登录成功
-     * data : {"id":"0000000003","sex":"2","age":"24","phone":"13512511028","hangye":"程序员","reg_date":"2020-06-03","nickname":"赵连岗","user_img":"/data/www/Xyc/public/upload/20200603/97029165109c96948d1c7edf1a7d55cd.jpg"}
+     * msg : 获取信息成功
+     * data : {"id":"10018","sex":"1","age":"24","label":["[自由职业"," 留学生"," 旅游从业者"," 会计"," 美容师"," 甜品师"," 保险"," 销售"," 飞行员"," 模特"," 搬砖"," 律师"," 发传单"," 工程师"," 上班族]"],"phone":"13512511029","hangye":"程序员","height":"172","region":"山西省-阳泉市-城区","wechat":"","reg_date":"2020-06-16","nickname":"好听的名字","user_img":"http://www.xiangyingchun.cn/upload/20200616/3fd46bdb07a0ec475f39441bb1001e18.jpg","birthday":"1996-03-22","autograph":"招聘ios开发111","constellation":"白羊座","wechat_show":"0"}
      */
 
     private DataBean data;
@@ -20,14 +21,22 @@ public class UserBean {
 
     public static class DataBean {
         /**
-         * id : 0000000003
-         * sex : 2
+         * id : 10018
+         * sex : 1
          * age : 24
-         * phone : 13512511028
+         * label : ["[自由职业"," 留学生"," 旅游从业者"," 会计"," 美容师"," 甜品师"," 保险"," 销售"," 飞行员"," 模特"," 搬砖"," 律师"," 发传单"," 工程师"," 上班族]"]
+         * phone : 13512511029
          * hangye : 程序员
-         * reg_date : 2020-06-03
-         * nickname : 赵连岗
-         * user_img : /data/www/Xyc/public/upload/20200603/97029165109c96948d1c7edf1a7d55cd.jpg
+         * height : 172
+         * region : 山西省-阳泉市-城区
+         * wechat :
+         * reg_date : 2020-06-16
+         * nickname : 好听的名字
+         * user_img : http://www.xiangyingchun.cn/upload/20200616/3fd46bdb07a0ec475f39441bb1001e18.jpg
+         * birthday : 1996-03-22
+         * autograph : 招聘ios开发111
+         * constellation : 白羊座
+         * wechat_show : 0
          */
 
         private String id;
@@ -35,9 +44,17 @@ public class UserBean {
         private String age;
         private String phone;
         private String hangye;
+        private String height;
+        private String region;
+        private String wechat;
         private String reg_date;
         private String nickname;
         private String user_img;
+        private String birthday;
+        private String autograph;
+        private String constellation;
+        private String wechat_show;
+        private List<String> label;
 
         public String getId() {
             return id;
@@ -79,6 +96,30 @@ public class UserBean {
             this.hangye = hangye;
         }
 
+        public String getHeight() {
+            return height;
+        }
+
+        public void setHeight(String height) {
+            this.height = height;
+        }
+
+        public String getRegion() {
+            return region;
+        }
+
+        public void setRegion(String region) {
+            this.region = region;
+        }
+
+        public String getWechat() {
+            return wechat;
+        }
+
+        public void setWechat(String wechat) {
+            this.wechat = wechat;
+        }
+
         public String getReg_date() {
             return reg_date;
         }
@@ -101,6 +142,46 @@ public class UserBean {
 
         public void setUser_img(String user_img) {
             this.user_img = user_img;
+        }
+
+        public String getBirthday() {
+            return birthday;
+        }
+
+        public void setBirthday(String birthday) {
+            this.birthday = birthday;
+        }
+
+        public String getAutograph() {
+            return autograph;
+        }
+
+        public void setAutograph(String autograph) {
+            this.autograph = autograph;
+        }
+
+        public String getConstellation() {
+            return constellation;
+        }
+
+        public void setConstellation(String constellation) {
+            this.constellation = constellation;
+        }
+
+        public String getWechat_show() {
+            return wechat_show;
+        }
+
+        public void setWechat_show(String wechat_show) {
+            this.wechat_show = wechat_show;
+        }
+
+        public List<String> getLabel() {
+            return label;
+        }
+
+        public void setLabel(List<String> label) {
+            this.label = label;
         }
     }
 }

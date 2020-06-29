@@ -22,5 +22,11 @@ public class Const {
         public static final String tablelist = base + "lists/tablelist";//首页卡片列表
         public static final String pub = base + "post/index";//发布
         public static final String trendslist = base + "post/tablelist";//广场列表
+        public static final String setAutograph = base + "user/setAutograph";//设置个性签名
+        public static final String setWechat = base + "user/setWechat";//设置微信号
+        public static final String setWechatShow = base + "user/setWechatShow";//设置微信是否显示
+        public static final String setRegion = base + "user/setRegion";//设置地区
+        public static final String setHeight = base + "user/setHeight";//设置身高
+        public static final String setLabel = base + "user/setLabel";//设置标签
     }
 }

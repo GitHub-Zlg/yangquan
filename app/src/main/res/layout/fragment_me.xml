@@ -44,7 +44,7 @@
                             <ImageView
                                 android:id="@+id/iv_bg"
                                 android:layout_width="match_parent"
-                                android:layout_height="130dp"
+                                android:layout_height="210dp"
                                 android:scaleType="centerCrop"
                                 android:src="@mipmap/test" />
 
@@ -114,7 +114,7 @@
                                 android:layout_marginTop="15dp"
                                 android:ellipsize="end"
                                 android:singleLine="true"
-                                android:textColor="@color/text"
+                                android:textColor="@color/white"
                                 android:textSize="18dp"
                                 android:textStyle="bold" />
 
@@ -125,7 +125,7 @@
                                 android:layout_below="@+id/tv_name"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginTop="10dp"
-                                android:textColor="@color/gray_light"
+                                android:textColor="@color/white"
                                 android:textSize="12dp" />
 
                             <View
@@ -141,7 +141,7 @@
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:layout_marginLeft="20dp"
-                                android:layout_marginTop="90dp"
+                                android:layout_marginTop="30dp"
                                 android:scaleType="centerCrop"
                                 android:src="@mipmap/head"
                                 app:riv_border_color="@color/gray_light"

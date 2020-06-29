@@ -25,6 +25,8 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.ycuwq.datepicker.date.DatePickerDialogFragment;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.File;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -167,7 +169,7 @@ public class UpHeadActivity extends BaseActivity implements LoadingButton.OnLoad
                     tvOld.setText(date1);
                 } else {
                     tvOld.setText("");
-                    ToastUtil.show("您的年龄是负数吗？");
+                    ToastUtil.show("你是穿越来的？");
                 }
             }
         });

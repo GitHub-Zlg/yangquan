@@ -5,44 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/rl_top"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:background="?android:attr/selectableItemBackground"
-            android:scaleType="centerInside"
-            android:src="@mipmap/icon_back" />
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/iv_back"
-            android:text="编辑资料"
-            android:textColor="#434343"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/tv_right"
-            android:layout_width="70dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/selector_btn"
-            android:gravity="center"
-            android:text="保存"
-            android:textColor="@color/colorWhite"
-            android:textSize="14dp" />
-    </RelativeLayout>
-
+    <include layout="@layout/layout_top"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -79,7 +42,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:elevation="0dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:cardBackgroundColor="@color/line"
                 app:cardCornerRadius="5dp">
 
@@ -95,122 +58,415 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
                     android:padding="10dp"
-                    android:text="提示：第一张作为头像，长按可更改排序。最多可上传4张照片，作为照片墙展现给用户，个人资料内容必须遵守相关法律法规和社区规定，并经过审核才能生效，请严格遵守相关规定，以免违规。"
+                    android:text="提示：最多可上传4张照片，作为照片墙展示给用户。默认第一张作为头像，长按可更改排序。个人资料内容必须遵守相关法律法规和社区规定，并经过审核才能生效，请严格遵守相关规定，以免违规。"
                     android:textColor="@color/text"
-                    android:textSize="15dp" />
+                    android:textSize="12dp" />
             </androidx.cardview.widget.CardView>
 
-            <app.com.yangquan.test.LinedRelativeLayout
-                android:id="@+id/layout_edit"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="基本资料"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="12dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/rl_nikename"
+                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp">
+                android:layout_height="50dp">
 
-                <EditText
-                    android:id="@+id/name"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@+id/tv_name"
-                    android:layout_marginRight="50dp"
-                    android:background="@null"
-                    android:hint="火星用户"
-                    android:imeOptions="actionNext"
-                    android:maxLength="10"
-                    android:singleLine="true"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="昵称"
                     android:textColor="@color/text"
-                    android:textColorHint="@color/gray3"
-                    android:textSize="13dp" />
-
-                <EditText
-                    android:id="@+id/wechat"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@id/tv_wechat"
-                    android:layout_marginRight="50dp"
-                    android:background="@null"
-                    android:hint="13512511029"
-                    android:imeOptions="actionNext"
-                    android:singleLine="true"
-                    android:textColor="@color/text"
-                    android:textColorHint="@color/gray3"
-                    android:textSize="13dp" />
-
-                <EditText
-                    android:id="@+id/signature"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@id/tv_signature"
-                    android:layout_marginRight="50dp"
-                    android:background="@null"
-                    android:hint="身高一秒78"
-                    android:imeOptions="actionNext"
-                    android:maxLength="30"
-                    android:singleLine="true"
-                    android:textColor="@color/text"
-                    android:textColorHint="@color/gray3"
-                    android:textSize="13dp" />
-
-                <EditText
-                    android:id="@+id/work"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_below="@id/tv_work"
-                    android:layout_marginRight="50dp"
-                    android:background="@null"
-                    android:hint="程序员"
-                    android:imeOptions="actionNext"
-                    android:maxLength="30"
-                    android:singleLine="true"
-                    android:textColor="@color/text"
-                    android:textColorHint="@color/gray3"
                     android:textSize="13dp" />
 
                 <TextView
-                    android:id="@+id/tv_name"
+                    android:id="@+id/tv_nikename"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="昵称:"
-                    android:textColor="@color/blue_active"
-                    android:textSize="15dp" />
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
+                    android:textColor="#AFAFAF"
+                    android:text="昵称"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_age"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
 
                 <TextView
-                    android:id="@+id/tv_wechat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/name"
-                    android:layout_marginTop="10dp"
-                    android:text="微信号:"
+                    android:layout_centerVertical="true"
+                    android:text="出生日期"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/text"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
+                    android:textColor="#AFAFAF"
+                    android:text="1995-08-23"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更多资料"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="12dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                />
+
+            <RelativeLayout
+                android:id="@+id/rl_tag"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="兴趣标签"
+                    android:textColor="@color/text"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
                     android:textColor="@color/blue_active"
-                    android:textSize="15dp" />
+                    android:text="给你的生活打上标签"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_signature"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:id="@+id/tv_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="个性签名"
+                    android:textColor="@color/text"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/tv_signature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
+                    android:layout_toRightOf="@+id/tv_start"
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:text="给喜欢你的人留下一句话吧"
+                    android:textColor="@color/blue_active"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_height"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/wechat"
-                    android:layout_marginTop="10dp"
-                    android:text="个性签名:"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="身高"
+                    android:textColor="@color/text"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
                     android:textColor="@color/blue_active"
-                    android:textSize="15dp" />
+                    android:text="您的身高"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_work"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="职业"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/text"
+                    android:textSize="13dp" />
 
                 <TextView
                     android:id="@+id/tv_work"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/signature"
-                    android:layout_marginTop="10dp"
-                    android:text="工作:"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
                     android:textColor="@color/blue_active"
-                    android:textSize="15dp" />
+                    android:text="从事什么工作"
+                    android:textSize="13dp" />
 
-            </app.com.yangquan.test.LinedRelativeLayout>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_hometown"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="老家"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/text"
+                    android:textSize="13dp" />
 
+                <TextView
+                    android:id="@+id/tv_hometown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
+                    android:textColor="@color/blue_active"
+                    android:text="老家在哪儿"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_wechat"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="微信号"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/text"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_wechat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40dp"
+                    android:textColor="@color/blue_active"
+                    android:text="加个微信?"
+                    android:textSize="13dp" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/icon_right" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="是否对外展示微信号"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/text"
+                    android:textSize="13dp" />
+
+                <com.bitvale.switcher.SwitcherX
+                    android:id="@+id/switcher"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    app:switcher_on_color="@color/switcher_on_color"
+                    app:switcher_off_color="@color/switcher_off_color"
+                    app:switcher_icon_color="@color/switcher_icon_color" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/line" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"></RelativeLayout>
         </LinearLayout>
     </ScrollView>
-
-
 </LinearLayout>
