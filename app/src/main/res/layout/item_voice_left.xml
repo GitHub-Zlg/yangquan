@@ -24,8 +24,8 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/avatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_below="@id/time"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="5dp"

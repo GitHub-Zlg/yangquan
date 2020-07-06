@@ -25,7 +25,7 @@ import app.com.yangquan.util.FaceUtil;
 public class ImChatFacePagerAdapter extends PagerAdapter {
 
     private List<View> mViewList;
-    private static final int FACE_COUNT = 20;//每页20个表情
+    private static final int FACE_COUNT = 34;//每页20个表情
 
     public ImChatFacePagerAdapter(Context context, OnFaceClickListener onFaceClickListener) {
         LayoutInflater inflater = LayoutInflater.from(context);

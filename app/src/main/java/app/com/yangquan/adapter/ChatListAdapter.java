@@ -1,5 +1,6 @@
 package app.com.yangquan.adapter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,11 +16,15 @@ import app.com.yangquan.jiguang.im.ImMessageUtil;
 import app.com.yangquan.jiguang.im.ImUserMsgEvent;
 import app.com.yangquan.view.BasePopup;
 import razerdp.basepopup.BasePopupWindow;
+import tyrantgit.explosionfield.ExplosionField;
 
 public class ChatListAdapter extends BaseQuickAdapter<ImUserMsgEvent> {
-    public ChatListAdapter() {
+    private Activity activity;
+    public ChatListAdapter(Activity a) {
         super(R.layout.item_msg, null);
+        this.activity = a;
     }
+
     private BasePopup mDemoPopup;
     public boolean blur = false;
     float x, y;
@@ -64,6 +69,9 @@ public class ChatListAdapter extends BaseQuickAdapter<ImUserMsgEvent> {
             @Override
             public void onClick(View v) {
                 ImMessageUtil.getInstance().removeConversation(bean.getUid());
+                //爆炸效果测试
+                ExplosionField mExplosionField = ExplosionField.attach2Window(activity);
+                mExplosionField.explode(holder.getView(R.id.swipe));
                 remove(holder.getAdapterPosition());
                 notifyItemChanged(holder.getAdapterPosition());
             }

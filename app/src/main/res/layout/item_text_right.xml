@@ -19,8 +19,8 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/avatar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="true"
         android:layout_below="@id/time"
         android:layout_marginLeft="5dp"
@@ -36,11 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/avatar"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="5dp"
         android:layout_toLeftOf="@id/avatar"
         android:orientation="horizontal"
-        android:layout_marginRight="5dp"
         >
 
         <FrameLayout
@@ -74,16 +71,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
-            android:minHeight="40dp"
+            android:minHeight="35dp"
             android:paddingBottom="7dp"
             android:paddingLeft="8dp"
-            android:paddingRight="10dp"
+            android:paddingRight="8dp"
             android:paddingTop="7dp"
             app:arrowDirecrion="right"
-            app:arrowHeight="5dp"
-            app:arrowPositionY="20dp"
-            app:arrowWidth="10dp"
-            app:bubbleBgColor="@color/blue"
+            app:bubbleBgColor="@color/green_inactive"
             app:bubbleRadius="5dp">
 
             <TextView
@@ -93,7 +87,7 @@
                 android:layout_gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:textColor="@color/colorWhite"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
         </app.com.yangquan.view.BubbleLayout>
     </LinearLayout>

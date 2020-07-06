@@ -1,25 +1,33 @@
 package app.com.yangquan.activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
-import android.os.Build;
-import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
+import com.effective.android.panel.PanelSwitchHelper;
+import com.effective.android.panel.interfaces.listener.OnEditFocusChangeListener;
+import com.effective.android.panel.interfaces.listener.OnKeyboardStateListener;
+import com.effective.android.panel.interfaces.listener.OnPanelChangeListener;
+import com.effective.android.panel.interfaces.listener.OnViewClickListener;
+import com.effective.android.panel.view.PanelSwitchLayout;
+import com.effective.android.panel.view.content.LinearContentContainer;
+import com.effective.android.panel.view.panel.IPanelView;
+import com.effective.android.panel.view.panel.PanelContainer;
+import com.effective.android.panel.view.panel.PanelView;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -27,32 +35,25 @@ import com.luck.picture.lib.entity.LocalMedia;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import app.com.yangquan.R;
 import app.com.yangquan.adapter.ChatAdapter;
+import app.com.yangquan.adapter.ImChatFacePagerAdapter;
 import app.com.yangquan.base.BaseActivity;
-import app.com.yangquan.bean.UserBean;
-import app.com.yangquan.http.Const;
 import app.com.yangquan.jiguang.im.ImMessageBean;
 import app.com.yangquan.jiguang.im.ImMessageUtil;
 import app.com.yangquan.jiguang.im.ImUserMsgEvent;
-import app.com.yangquan.listener.SoftKeyBoardListener;
-import app.com.yangquan.util.ChatUiHelper;
-import app.com.yangquan.util.DateUtils;
+import app.com.yangquan.listener.OnFaceClickListener;
 import app.com.yangquan.util.DpUtil;
-import app.com.yangquan.util.FileSaveUtil;
 import app.com.yangquan.util.PhotoUtil;
+import app.com.yangquan.util.TextRender;
 import app.com.yangquan.util.ToastUtil;
-import app.com.yangquan.util.WordUtil;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.jpush.im.android.api.content.TextContent;
@@ -62,60 +63,46 @@ import cn.jpush.im.api.BasicCallback;
 import pub.devrel.easypermissions.EasyPermissions;
 
 public class ChatActivity extends BaseActivity {
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+    @BindView(R.id.add_btn)
+    ImageView addBtn;
+    @BindView(R.id.edit_text)
+    EditText editText;
+    @BindView(R.id.emotion_btn)
+    ImageView emotionBtn;
+    @BindView(R.id.send)
+    TextView send;
+    @BindView(R.id.bottom_action)
+    LinearLayout bottomAction;
+    @BindView(R.id.content_view)
+    LinearContentContainer contentView;
+    @BindView(R.id.panel_add)
+    PanelView panelAdd;
+    @BindView(R.id.panel_container)
+    PanelContainer panelContainer;
+    @BindView(R.id.panel_switch_layout)
+    PanelSwitchLayout panelSwitchLayout;
+    @BindView(R.id.panel_emj)
+    PanelView panelEmj;
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
     @BindView(R.id.tv_right)
     TextView tvRight;
+    @BindView(R.id.iv_right)
+    ImageView ivRight;
+    @BindView(R.id.loading)
+    SpinKitView loading;
     @BindView(R.id.rl_top)
     RelativeLayout rlTop;
-    @BindView(R.id.recycler)
-    RecyclerView recycler;
-    @BindView(R.id.ivAudio)
-    ImageView ivAudio;
-    @BindView(R.id.et_content)
-    EditText etContent;
-    @BindView(R.id.ivEmo)
-    ImageView ivEmo;
-    @BindView(R.id.ivAdd)
-    ImageView ivAdd;
-    @BindView(R.id.btn_send)
-    TextView btnSend;
-    @BindView(R.id.llContent)
-    LinearLayout llContent;
-    LinearLayout homeEmoji;
-    @BindView(R.id.ivPhoto)
-    ImageView ivPhoto;
-    @BindView(R.id.rlPhoto)
-    RelativeLayout rlPhoto;
-    @BindView(R.id.ivCamera)
-    ImageView ivCamera;
-    @BindView(R.id.rlCamera)
-    RelativeLayout rlCamera;
-    @BindView(R.id.ivFile)
-    ImageView ivFile;
-    @BindView(R.id.rlFile)
-    RelativeLayout rlFile;
-    @BindView(R.id.ivLocation)
-    ImageView ivLocation;
-    @BindView(R.id.rlLocation)
-    RelativeLayout rlLocation;
-    @BindView(R.id.bottom_layout)
-    RelativeLayout bottomLayout;
-    @BindView(R.id.llAdd)
-    LinearLayout llAdd;
-    @BindView(R.id.tv_voice)
-    TextView tvVoice;
-    @BindView(R.id.llFace)
-    LinearLayout llFace;
+    private PanelSwitchHelper mHelper;
     private String uid;
     private String name;
     private ChatAdapter adapter;
-    private boolean isVoice = false;
     private String[] voice_permissions = {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     private String[] photo_permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
-    private ChatUiHelper mUiHelper;//底部功能栏
     private LinearLayoutManager linearLayoutManager;
 
     @Override
@@ -124,24 +111,20 @@ public class ChatActivity extends BaseActivity {
     }
 
     @Override
-    protected void init() {
-        initChatUi();
-        EventBus.getDefault().register(this);
-        uid = getIntent().getStringExtra("uid");
-        name = getIntent().getStringExtra("name");
-        tvRight.setText("设置");
-        tvTitle.setText(name);
-        initRecycler();
+    protected void onStart() {
+        super.onStart();
+        initPanelSwitchHelper();
+        initFaceView();
+        initAddView();
     }
 
-    private void initRecycler() {
-        linearLayoutManager = new LinearLayoutManager(mContext);
-        recycler.setLayoutManager(linearLayoutManager);
-        adapter = new ChatAdapter();
-        recycler.setAdapter(adapter);
-        List<ImMessageBean> chatMessageList = ImMessageUtil.getInstance().getChatMessageList(uid); //获取该会话所有消息
-        adapter.setNewData(chatMessageList);
-        linearLayoutManager.scrollToPositionWithOffset(adapter.getItemCount() - 1, -DpUtil.dp2px(20));
+
+    @Override
+    protected void init() {
+        EventBus.getDefault().register(this);
+        initData();
+        initTitle();
+        initRecycler();
     }
 
     @Override
@@ -154,108 +137,50 @@ public class ChatActivity extends BaseActivity {
 
     }
 
-    //收到消息
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(ImMessageBean event) {
-        Log.e("zlg", "聊天页面");
-        insertItem(event);
-        ImMessageUtil.getInstance().markAllMessagesAsRead(uid);
-
+    //初始化数据
+    private void initData() {
+        uid = getIntent().getStringExtra("uid");
+        name = getIntent().getStringExtra("name");
     }
 
-    //设置底部按钮绑定
-    private void initChatUi() {
-        mUiHelper = ChatUiHelper.with(mContext);
-        mUiHelper.bindContentLayout(llContent)
-                .bindttToSendButton(btnSend)
-                .bindEditText(etContent)
-                .bindBottomLayout(bottomLayout)
-                .bindEmojiLayout(llFace)
-                .bindAddLayout(llAdd)
-                .bindToAddButton(ivAdd)
-                .bindToEmojiButton(ivEmo)
-                .bindEmojiData();
-        //底部布局弹出,聊天列表上滑
-        recycler.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+    //初始化title
+    private void initTitle() {
+        tvRight.setText("设置");
+        tvTitle.setText(name);
+    }
+
+    //初始化recycler
+    private void initRecycler() {
+        linearLayoutManager = new LinearLayoutManager(mContext);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new ChatAdapter();
+        recyclerView.setAdapter(adapter);
+        List<ImMessageBean> chatMessageList = ImMessageUtil.getInstance().getChatMessageList(uid); //获取该会话所有消息
+        adapter.setNewData(chatMessageList);
+        linearLayoutManager.scrollToPositionWithOffset(adapter.getItemCount() - 1, -DpUtil.dp2px(20));
+        recyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                if (bottom < oldBottom) {
-                    recycler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            ivAudio.setImageResource(R.mipmap.ic_audio);
-                            etContent.requestFocus();
-                            etContent.setVisibility(View.VISIBLE);
-                            tvVoice.setVisibility(View.GONE);
-                            isVoice = false;
-                            if (adapter.getItemCount() > 0) {
-                                recycler.smoothScrollToPosition(adapter.getItemCount() - 1);
-                            }
-                        }
-                    });
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mHelper.resetState();
+                        break;
                 }
-            }
-        });
-        //点击空白区域关闭键盘
-        recycler.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                mUiHelper.hideBottomLayout(false);
-                mUiHelper.hideSoftInput();
-                etContent.clearFocus();
-                ivEmo.setImageResource(R.mipmap.ic_emoji);
                 return false;
             }
         });
     }
 
-    private void clickAudio() {
-        mUiHelper.hideBottomLayout(false);
-        mUiHelper.hideSoftInput();
-        etContent.clearFocus();
-        ivEmo.setImageResource(R.mipmap.ic_emoji);
-        if (isVoice) {
-            ivAudio.setImageResource(R.mipmap.ic_audio);
-            etContent.setVisibility(View.VISIBLE);
-            tvVoice.setVisibility(View.GONE);
-            isVoice = false;
-        } else {
-            if (getVoicePermission()) {
-                ivAudio.setImageResource(R.mipmap.ic_keyboard);
-                etContent.setVisibility(View.GONE);
-                tvVoice.setVisibility(View.VISIBLE);
-                isVoice = true;
-            }
-        }
-    }
-
-    //请求录音储存权限
-    private boolean getVoicePermission() {
-        if (EasyPermissions.hasPermissions(this, voice_permissions)) {
-            //已经打开权限
-            return true;
-        } else {
-            //没有打开相关权限、申请权限
-            EasyPermissions.requestPermissions(this, "需要获取您的录音、储存使用权限", 2, voice_permissions);
-            return false;
-        }
-    }
-
-    //请求录音储存权限
-    private boolean getPhotoPermission() {
-        if (EasyPermissions.hasPermissions(this, photo_permissions)) {
-            //已经打开权限
-            return true;
-        } else {
-            //没有打开相关权限、申请权限
-            EasyPermissions.requestPermissions(this, "需要获取您的拍照、储存使用权限", 3, photo_permissions);
-            return false;
-        }
+    //收到消息
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(ImMessageBean event) {
+        insertItem(event);
+        ImMessageUtil.getInstance().markAllMessagesAsRead(uid);
     }
 
     //发送文字消息
     private void sendText() {
-        String mcgContent = etContent.getText().toString();
+        String mcgContent = editText.getText().toString().trim();
         if (TextUtils.isEmpty(mcgContent)) {
             ToastUtil.show("怎么也得说两个字吧");
             return;
@@ -280,7 +205,7 @@ public class ChatActivity extends BaseActivity {
                 public void gotResult(int i, String s) {
                     if (i != 0) {
                         messageBean.setLoading(false);
-                        etContent.setText("");
+                        editText.setText("");
                         messageBean.setSendFail(true);
                         adapter.notifyItemChanged(position);
                         if (i == 803008) {
@@ -291,7 +216,7 @@ public class ChatActivity extends BaseActivity {
                     } else {
                         messageBean.setLoading(false);
                         messageBean.setSendFail(false);
-                        etContent.setText("");
+                        editText.setText("");
                         adapter.notifyItemChanged(position);
                         Log.e("zlg", "消息发送成功");
                     }
@@ -329,7 +254,6 @@ public class ChatActivity extends BaseActivity {
         linearLayoutManager.scrollToPositionWithOffset(adapter.getItemCount() - 1, -DpUtil.dp2px(20));
     }
 
-
     //判断是否存在该会话
     public int getPosition(int id) {
         for (int i = 0, size = adapter.getData().size(); i < size; i++) {
@@ -341,36 +265,174 @@ public class ChatActivity extends BaseActivity {
         return -1;
     }
 
-
-    @OnClick({R.id.ivAudio, R.id.btn_send, R.id.rlPhoto, R.id.rlCamera, R.id.iv_back, R.id.tv_right, R.id.tv_voice})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_back:
-                finish();
-                break;
-            case R.id.tv_right:
-                break;
-            case R.id.tv_voice:
-                break;
-            case R.id.ivAudio:
-                clickAudio();
-                break;
-            case R.id.btn_send:
-                sendText();
-                break;
-            case R.id.rlPhoto:
+    //初始化add功能面板
+    private void initAddView() {
+        View v = panelAdd.getRootView();
+        RelativeLayout rlPhotot = v.findViewById(R.id.rlPhoto);
+        RelativeLayout rlCamera = v.findViewById(R.id.rlCamera);
+        rlPhotot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 ToastUtil.show("相册");
-                break;
-            case R.id.rlCamera:
+            }
+        });
+
+        rlCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if (getPhotoPermission()) {
                     PhotoUtil.pictureCamera(mContext, 1);
                 }
-                break;
+            }
+        });
+    }
+
+    //初始化表情控件
+    private View initFaceView() {
+        LayoutInflater inflater = LayoutInflater.from(mContext);
+        View v = panelEmj.getRootView();
+        v.measure(0, 0);
+        final RadioGroup radioGroup = (RadioGroup) v.findViewById(R.id.radio_group);
+        ViewPager viewPager = (ViewPager) v.findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(10);
+        ImChatFacePagerAdapter adapter = new ImChatFacePagerAdapter(mContext, new OnFaceClickListener() {
+            @Override
+            public void onFaceClick(String str, int faceImageRes) {
+                if (editText != null) {
+                    Editable editable = editText.getText();
+                    editable.insert(editText.getSelectionStart(), TextRender.getFaceImageSpan(str, faceImageRes));
+                }
+            }
+
+            @Override
+            public void onFaceDeleteClick() {
+                if (editText != null) {
+                    int selection = editText.getSelectionStart();
+                    String text = editText.getText().toString();
+                    if (selection > 0) {
+                        String text2 = text.substring(selection - 1, selection);
+                        if ("]".equals(text2)) {
+                            int start = text.lastIndexOf("[", selection);
+                            if (start >= 0) {
+                                editText.getText().delete(start, selection);
+                            } else {
+                                editText.getText().delete(selection - 1, selection);
+                            }
+                        } else {
+                            editText.getText().delete(selection - 1, selection);
+                        }
+                    }
+                }
+            }
+        });
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                ((RadioButton) radioGroup.getChildAt(position)).setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        for (int i = 0, pageCount = adapter.getCount(); i < pageCount; i++) {
+            RadioButton radioButton = (RadioButton) inflater.inflate(R.layout.view_chat_indicator, radioGroup, false);
+            radioButton.setId(i + 10000);
+            if (i == 0) {
+                radioButton.setChecked(true);
+            }
+            radioGroup.addView(radioButton);
+        }
+        return v;
+    }
+
+    //初始化功能面板监听
+    private void initPanelSwitchHelper() {
+        if (mHelper == null) {
+            mHelper = new PanelSwitchHelper.Builder(this).addKeyboardStateListener(new OnKeyboardStateListener() {
+                @Override
+                public void onKeyboardChange(boolean b, int i) {//可选实现，监听输入法变化
+
+                }
+            }).addEditTextFocusChangeListener(new OnEditFocusChangeListener() {
+                @Override
+                public void onFocusChange(@Nullable View view, boolean b) { //可选实现，监听输入框焦点变化
+
+                }
+            }).addViewClickListener(new OnViewClickListener() {
+                @Override
+                public void onClickBefore(@Nullable View view) {//可选实现，监听触发器的点击
+
+                }
+            }).addPanelChangeListener(new OnPanelChangeListener() {
+                @Override
+                public void onKeyboard() {//可选实现，输入法显示回调
+
+                }
+
+                @Override
+                public void onNone() {//可选实现，默认状态回调
+
+                }
+
+                @Override
+                public void onPanel(@Nullable IPanelView iPanelView) {//可选实现，面板显示回调
+
+                }
+
+                @Override//可选实现，输入法动态调整时引起的面板高度变化动态回调
+                public void onPanelSizeChange(@Nullable IPanelView iPanelView, boolean b, int i, int i1, int i2, int i3) {
+
+                }
+            }).contentCanScrollOutside(true)
+                    .logTrack(true)
+                    .build(true);
+        }
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() > 0) {
+                    send.setVisibility(View.VISIBLE);
+                } else {
+                    send.setVisibility(View.GONE);
+                }
+            }
+        });
+    }
+
+    //请求拍照，相册权限
+    private boolean getPhotoPermission() {
+        if (EasyPermissions.hasPermissions(this, photo_permissions)) {
+            //已经打开权限
+            return true;
+        } else {
+            //没有打开相关权限、申请权限
+            EasyPermissions.requestPermissions(this, "需要获取您的拍照、储存使用权限", 3, photo_permissions);
+            return false;
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @androidx.annotation.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
@@ -385,6 +447,18 @@ public class ChatActivity extends BaseActivity {
                     }
                     break;
             }
+        }
+    }
+
+    @OnClick({R.id.iv_back, R.id.send})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_back:
+                finish();
+                break;
+            case R.id.send:
+                sendText();
+                break;
         }
     }
 

@@ -61,7 +61,7 @@ public class ChatListFragment extends BaseFragment {
     private void initRecycler() {
         refresh.setEnableLoadMore(false);
         recycler.setLayoutManager(new LinearLayoutManager(mContext));
-        adapter = new ChatListAdapter();
+        adapter = new ChatListAdapter(mContext);
         recycler.setAdapter(adapter);
         refresh.setOnRefreshListener(new OnRefreshListener() {
             @Override

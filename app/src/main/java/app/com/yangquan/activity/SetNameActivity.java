@@ -1,6 +1,5 @@
 package app.com.yangquan.activity;
 
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -24,7 +23,6 @@ import app.com.yangquan.http.Const;
 import app.com.yangquan.util.PreferencesUtils;
 import app.com.yangquan.util.ToastUtil;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SetNameActivity extends BaseActivity {

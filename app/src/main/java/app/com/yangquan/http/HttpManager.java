@@ -1,12 +1,7 @@
 package app.com.yangquan.http;
 
 import android.content.Context;
-import android.os.Build;
-import android.text.Editable;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,14 +12,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import androidx.viewpager.widget.ViewPager;
-import app.com.yangquan.R;
-import app.com.yangquan.adapter.ImChatFacePagerAdapter;
-import app.com.yangquan.listener.OnFaceClickListener;
-import app.com.yangquan.util.ChatUiHelper;
-import app.com.yangquan.util.TextRender;
 import app.com.yangquan.util.ToastUtil;
-import app.com.yangquan.view.WrapContentHeightViewPager;
 import okhttp3.Call;
 import okhttp3.MediaType;
 

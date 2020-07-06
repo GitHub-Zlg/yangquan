@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_top"/>
+    <include layout="@layout/layout_top" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,19 +67,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="基本资料"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:textSize="12dp"
-                android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
-                />
+                android:layout_marginTop="20dp"
+                android:text="基本资料"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:id="@+id/rl_nikename"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -96,8 +96,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="40dp"
-                    android:textColor="#AFAFAF"
                     android:text="昵称"
+                    android:textColor="#AFAFAF"
                     android:textSize="13dp" />
 
                 <ImageView
@@ -119,16 +119,16 @@
 
             <RelativeLayout
                 android:id="@+id/rl_age"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="出生日期"
                     android:layout_marginLeft="10dp"
+                    android:text="出生日期"
                     android:textColor="@color/text"
                     android:textSize="13dp" />
 
@@ -139,8 +139,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="40dp"
-                    android:textColor="#AFAFAF"
                     android:text="1995-08-23"
+                    android:textColor="#AFAFAF"
                     android:textSize="13dp" />
 
                 <ImageView
@@ -163,19 +163,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="更多资料"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
-                android:textSize="12dp"
-                android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
-                />
+                android:layout_marginTop="20dp"
+                android:text="更多资料"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:id="@+id/rl_tag"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -193,8 +192,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="40dp"
-                    android:textColor="@color/blue_active"
                     android:text="给你的生活打上标签"
+                    android:textColor="@color/blue_active"
                     android:textSize="13dp" />
 
                 <ImageView
@@ -213,11 +212,12 @@
                     android:layout_marginRight="15dp"
                     android:background="@color/line" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_signature"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:id="@+id/tv_start"
@@ -235,12 +235,12 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="40dp"
                     android:layout_toRightOf="@+id/tv_start"
-                    android:layout_marginLeft="10dp"
-                    android:singleLine="true"
                     android:ellipsize="end"
                     android:gravity="end"
+                    android:singleLine="true"
                     android:text="给喜欢你的人留下一句话吧"
                     android:textColor="@color/blue_active"
                     android:textSize="13dp" />
@@ -261,11 +261,12 @@
                     android:layout_marginRight="15dp"
                     android:background="@color/line" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_height"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -283,8 +284,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="40dp"
-                    android:textColor="@color/blue_active"
                     android:text="您的身高"
+                    android:textColor="@color/blue_active"
                     android:textSize="13dp" />
 
                 <ImageView
@@ -303,18 +304,19 @@
                     android:layout_marginRight="15dp"
                     android:background="@color/line" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_work"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="职业"
                     android:layout_marginLeft="10dp"
+                    android:text="职业"
                     android:textColor="@color/text"
                     android:textSize="13dp" />
 
@@ -325,8 +327,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="40dp"
-                    android:textColor="@color/blue_active"
                     android:text="从事什么工作"
+                    android:textColor="@color/blue_active"
                     android:textSize="13dp" />
 
                 <ImageView
@@ -345,18 +347,19 @@
                     android:layout_marginRight="15dp"
                     android:background="@color/line" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_hometown"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="老家"
                     android:layout_marginLeft="10dp"
+                    android:text="老家"
                     android:textColor="@color/text"
                     android:textSize="13dp" />
 
@@ -367,8 +370,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="40dp"
-                    android:textColor="@color/blue_active"
                     android:text="老家在哪儿"
+                    android:textColor="@color/blue_active"
                     android:textSize="13dp" />
 
                 <ImageView
@@ -387,18 +390,19 @@
                     android:layout_marginRight="15dp"
                     android:background="@color/line" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:id="@+id/rl_wechat"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="微信号"
                     android:layout_marginLeft="10dp"
+                    android:text="微信号"
                     android:textColor="@color/text"
                     android:textSize="13dp" />
 
@@ -409,8 +413,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="40dp"
-                    android:textColor="@color/blue_active"
                     android:text="加个微信?"
+                    android:textColor="@color/blue_active"
                     android:textSize="13dp" />
 
                 <ImageView
@@ -431,29 +435,30 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:background="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="是否对外展示微信号"
                     android:layout_marginLeft="10dp"
+                    android:text="是否对外展示微信号"
                     android:textColor="@color/text"
                     android:textSize="13dp" />
 
                 <com.bitvale.switcher.SwitcherX
                     android:id="@+id/switcher"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
-                    app:switcher_on_color="@color/switcher_on_color"
+                    app:switcher_icon_color="@color/switcher_icon_color"
                     app:switcher_off_color="@color/switcher_off_color"
-                    app:switcher_icon_color="@color/switcher_icon_color" />
+                    app:switcher_on_color="@color/switcher_on_color" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
@@ -464,9 +469,9 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"></RelativeLayout>
+                android:layout_height="100dp"
+                android:background="?android:attr/selectableItemBackground"></RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

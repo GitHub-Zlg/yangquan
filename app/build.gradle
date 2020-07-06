@@ -118,5 +118,6 @@ dependencies {
     implementation 'com.bitvale:switcher:1.1.0'
     /*仿小米卸载app爆炸粒子效果*/
     implementation 'tyrantgit:explosionfield:1.0.1'
-
+    /*输入法与功能面板切换*/
+    implementation 'com.effective.android:panelSwitchHelper-androidx:1.3.2.1'
 }

@@ -26,6 +26,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import app.com.yangquan.R;
+import app.com.yangquan.activity.ChatActivity;
 import app.com.yangquan.activity.LoginActivity;
 import app.com.yangquan.activity.UpDateProfileActivity;
 import app.com.yangquan.adapter.TestAdapter;
@@ -42,7 +43,6 @@ import app.com.yangquan.view.CoustomDialog;
 import butterknife.BindView;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.EasyPermissions;
-import tyrantgit.explosionfield.ExplosionField;
 
 public class MeFragment extends BaseFragment {
     @BindView(R.id.appBarLayout)
@@ -221,9 +221,6 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.avater:
                 BigImageUtil.single(mContext,avaterPath);
-                //爆炸效果测试
-//                ExplosionField    mExplosionField = ExplosionField.attach2Window(mContext);
-//                mExplosionField.explode(avater);
                 break;
             case R.id.iv_share_top:
                 ToastUtil.show("分享");
