@@ -12,7 +12,6 @@ import com.google.android.material.appbar.AppBarLayout;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.ViewCompat;
-import app.com.yangquan.R;
 
 
 /**
@@ -54,14 +53,14 @@ public class AppBarLayoutOverScrollViewBehavior extends AppBarLayout.Behavior {
         boolean handled = super.onLayoutChild(parent, abl, layoutDirection);
 
         if (mToolBar == null) {
-            mToolBar = parent.findViewWithTag(TAG_TOOLBAR);
+            mToolBar = (Toolbar) parent.findViewWithTag(TAG_TOOLBAR);
         }
         if (middleLayout == null) {
             middleLayout = (ViewGroup) parent.findViewWithTag(TAG_MIDDLE);
         }
         // 需要在调用过super.onLayoutChild()方法之后获取
         if (mTargetView == null) {
-            mTargetView = parent.findViewById(R.id.iv_bg);
+            mTargetView = parent.findViewWithTag(TAG);
             if (mTargetView != null) {
                 initial(abl);
             }
@@ -72,20 +71,22 @@ public class AppBarLayoutOverScrollViewBehavior extends AppBarLayout.Behavior {
             @Override
             public final void onOffsetChanged(AppBarLayout appBarLayout, int i) {
                 mToolBar.setAlpha(Float.valueOf(Math.abs(i)) / Float.valueOf(appBarLayout.getTotalScrollRange()));
+
             }
+
         });
         return handled;
     }
 
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout parent, AppBarLayout child, View directTargetChild, View target, int nestedScrollAxes, int x) {
+    public boolean onStartNestedScroll(CoordinatorLayout parent, AppBarLayout child, View directTargetChild, View target, int nestedScrollAxes,int type) {
         isAnimate = true;
         if (target instanceof DisInterceptNestedScrollView) return true;//这个布局就是middleLayout
-        return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes,x);
+        return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes,type);
     }
 
     @Override
-    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dx, int dy, int[] consumed, int x) {
+    public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child, View target, int dx, int dy, int[] consumed, int type) {
         if (!isRecovering) {
             if (mTargetView != null && ((dy < 0 && child.getBottom() >= mParentHeight)
                     || (dy > 0 && child.getBottom() > mParentHeight))) {
@@ -93,8 +94,7 @@ public class AppBarLayoutOverScrollViewBehavior extends AppBarLayout.Behavior {
                 return;
             }
         }
-        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed,x);
-
+        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed,type);
     }
 
     @Override
@@ -107,9 +107,9 @@ public class AppBarLayoutOverScrollViewBehavior extends AppBarLayout.Behavior {
 
 
     @Override
-    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout abl, View target, int x) {
+    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout abl, View target, int type) {
         recovery(abl);
-        super.onStopNestedScroll(coordinatorLayout, abl, target,x);
+        super.onStopNestedScroll(coordinatorLayout, abl, target,type);
     }
 
     private void initial(AppBarLayout abl) {

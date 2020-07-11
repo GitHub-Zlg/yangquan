@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="340dp"
+    android:layout_marginTop="60dp"
+    android:background="@color/touming_light">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/avatar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="25dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/head"
+        app:layout_behavior="app.com.yangquan.view.CircleImageInUsercBehavior"
+        app:riv_oval="true" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/avatar"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:maxLength="12"
+        android:text="火星用火星用户火星用户火星用户户"
+        android:textColor="@color/white"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/tv_signature"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:maxLength="30"
+        android:text="个性签名个性签名个性签名个性签名个性签名个性签名个性签名个性签名个性签名个性签名"
+        android:textColor="@color/white"
+        android:textSize="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize=""
+        />
+
+</RelativeLayout>

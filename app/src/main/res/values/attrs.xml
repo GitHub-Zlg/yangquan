@@ -37,10 +37,19 @@
         <attr name="isReceiver" format="boolean"></attr>
     </declare-styleable>
 
-    <!--DragLayout-->
+    <!--图片拖动DragLayout-->
     <declare-styleable name="app">
         <attr name="bottomDragVisibleHeight" format="dimension" />
         <attr name="bototmExtraIndicatorHeight" format="dimension" />
     </declare-styleable>
 
+    <!--个人主页下拉带进度progress-->
+    <declare-styleable name="RoundProgressBar">
+        <attr name="round_color" format="color" />
+        <attr name="round_progressColor" format="color" />
+        <attr name="round_width" format="dimension"></attr>
+        <attr name="round_textColor" format="color" />
+        <attr name="round_textsize" format="dimension" />
+        <attr name="round_max" format="integer"></attr>
+    </declare-styleable>
 </resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <app.com.yangquan.view.DisInterceptNestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
+                android:id="@+id/tab"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_toLeftOf="@+id/iv_pub"
+                android:background="@color/colorWhite"
+                app:stl_defaultTabTextAllCaps="true"
+                app:stl_defaultTabTextColor="#434343"
+                app:stl_defaultTabTextSize="15dp"
+                app:stl_distributeEvenly="false"
+                app:stl_dividerColor="@color/colorWhite"
+                app:stl_dividerThickness="1dp"
+                app:stl_indicatorAlwaysInCenter="false"
+                app:stl_indicatorColor="#30A1E2"
+                app:stl_indicatorCornerRadius="2dp"
+                app:stl_indicatorInFront="false"
+                app:stl_indicatorInterpolation="smart"
+                app:stl_indicatorThickness="3dp"
+                app:stl_indicatorWidth="25dp"
+                app:stl_underlineColor="@color/colorWhite"
+                app:stl_underlineThickness="1dp"></com.ogaclejapan.smarttablayout.SmartTabLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tag_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:id="@+id/tag_ocreate_ll"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:text="Tags"
+                    android:textColor="#cc333333"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </app.com.yangquan.view.DisInterceptNestedScrollView>
+
+    <app.com.yangquan.view.NoScrollViewPager
+        android:id="@+id/uc_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" />
+</LinearLayout>

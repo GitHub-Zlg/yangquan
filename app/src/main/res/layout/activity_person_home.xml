@@ -1,9 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorWhite"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/line"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/line"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:elevation="0dp"
+            app:layout_behavior="app.com.yangquan.view.AppBarLayoutOverScrollViewBehavior">
+
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+
+                <include layout="@layout/layout_person_head_bg" />
+
+                <include
+                    layout="@layout/layout_uc_head_middle"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:alpha="0"
+                    android:background="@android:color/transparent"
+                    android:tag="toolbar"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/Widget.AppCompat.Toolbar" />
+
+                <include layout="@layout/layout_person_head_title" />
+
+                <include layout="@layout/layout_person_data" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <include layout="@layout/layout_person_content" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

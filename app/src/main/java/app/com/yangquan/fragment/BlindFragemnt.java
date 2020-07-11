@@ -1,5 +1,6 @@
 package app.com.yangquan.fragment;
 
+import android.content.Intent;
 import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
@@ -9,10 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import app.com.yangquan.R;
+import app.com.yangquan.activity.PersonHomeActivity;
 import app.com.yangquan.base.BaseFragment;
 import app.com.yangquan.bean.BlindBean;
 import app.com.yangquan.http.Const;
@@ -20,12 +23,15 @@ import app.com.yangquan.util.PreferencesUtils;
 import app.com.yangquan.view.CustPagerTransformer;
 import app.com.yangquan.view.DragLayout;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class BlindFragemnt extends BaseFragment implements DragLayout.GotoDetailListener {
     @BindView(R.id.viewpager)
     ViewPager viewpager;
     @BindView(R.id.ll_bottom)
     LinearLayout llBottom;
+    @BindView(R.id.card)
+    CardView card;
     private int page = 1;
     private List<CommonFragment> fragments = new ArrayList<>(); // 供ViewPager使用
 
@@ -141,5 +147,11 @@ public class BlindFragemnt extends BaseFragment implements DragLayout.GotoDetail
         Intent intent = new Intent(activity, DetailActivity.class);
         intent.putExtra(DetailActivity.EXTRA_IMAGE_URL, imageUrl);
         ActivityCompat.startActivity(activity, intent, options.toBundle());*/
+    }
+
+    @OnClick(R.id.card)
+    public void onViewClicked() {
+        startActivity(new Intent(mContext, PersonHomeActivity.class));
+
     }
 }

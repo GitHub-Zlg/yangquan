@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">羊quan圈</string>
     <string name="FILE_PROVIDER">app.com.yangquan.fileprovider</string>
+
+    <string name="appbar_overscroll_behavior">app.com.yangquan.view.AppBarLayoutOverScrollViewBehavior</string>
+    <string name="appbar_circleimageview_behavior">app.com.yangquan.view.behavior.CircleImageInUsercBehavior</string>
 </resources>

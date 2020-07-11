@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.BubbleToggleView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
+import com.gyf.barlibrary.ImmersionBar;
 import com.tapadoo.alerter.Alerter;
 
 import androidx.fragment.app.FragmentManager;
@@ -61,9 +62,10 @@ public class MainActivity extends BaseFragmentActivity {
     @Override
     protected void init() {
         initTab();
-        lItemNotification.setBadgeText("20");
-        resetButton(0);
         loginIM();
+        resetButton(0);
+        ImmersionBar.with(this).init();
+        lItemNotification.setBadgeText("20");
     }
 
     @Override
