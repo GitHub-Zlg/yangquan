@@ -1,6 +1,5 @@
 package app.com.yangquan.activity;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,16 +16,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import app.com.yangquan.R;
 import app.com.yangquan.base.BaseFragmentActivity;
-import app.com.yangquan.fragment.BlindFragemnt;
-import app.com.yangquan.fragment.ChatListFragment;
-import app.com.yangquan.fragment.MeFragment;
-import app.com.yangquan.fragment.TrendsFragment;
+import app.com.yangquan.fragment.a.BlindFragemnt;
+import app.com.yangquan.fragment.c.ChatListFragment;
+import app.com.yangquan.fragment.d.MeFragment;
+import app.com.yangquan.fragment.b.TrendsFragment;
 import app.com.yangquan.http.Const;
 import app.com.yangquan.jiguang.im.ImMessageUtil;
 import app.com.yangquan.util.PreferencesUtils;
-import app.com.yangquan.util.ToastUtil;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseFragmentActivity {
     @BindView(R.id.fl_main_container)
@@ -63,7 +60,7 @@ public class MainActivity extends BaseFragmentActivity {
     protected void init() {
         initTab();
         loginIM();
-        resetButton(0);
+        resetButton(1);
         ImmersionBar.with(this).init();
         lItemNotification.setBadgeText("20");
     }
@@ -122,19 +119,22 @@ public class MainActivity extends BaseFragmentActivity {
 
         switch (index) {
             case 0:
+                transaction.show(blindFragemnt);
+                break;
+            case 1:
                 if (blindFragemnt == null) {
                     blindFragemnt = new BlindFragemnt();
                     transaction.add(R.id.fl_main_container, blindFragemnt, TAG_BLIND);
+                    transaction.hide(blindFragemnt);
                 } else {
-                    transaction.show(blindFragemnt);
+                    transaction.hide(blindFragemnt);
                 }
 
                 if (trendsFragment == null) {
                     trendsFragment = new TrendsFragment();
                     transaction.add(R.id.fl_main_container, trendsFragment, TAG_TREND);
-                    transaction.hide(trendsFragment);
                 } else {
-                    transaction.hide(trendsFragment);
+                    transaction.show(trendsFragment);
                 }
 
                 if (msgFragment == null) {
@@ -152,9 +152,6 @@ public class MainActivity extends BaseFragmentActivity {
                 } else {
                     transaction.hide(meFragment);
                 }
-                break;
-            case 1:
-                transaction.show(trendsFragment);
                 break;
             case 2:
                 transaction.show(msgFragment);

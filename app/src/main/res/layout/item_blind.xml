@@ -1,70 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="200dp"
-    android:layout_height="250dp"
+    android:layout_width="220dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:orientation="vertical"
     app:cardCornerRadius="5dp"
     app:elevation="10dp">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:id="@+id/rl_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/img_bg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/img_slide_1"
-            android:scaleType="centerCrop" />
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="TODO" />
 
         <RelativeLayout
-            android:id="@+id/rela_bottom"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/blue_light">
+            android:layout_height="80dp"
+            android:layout_below="@+id/img_bg">
+
+            <ImageView
+                android:id="@+id/iv_heart"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:src="@mipmap/ic_heart1"
+                android:contentDescription="TODO" />
 
             <TextView
-                android:id="@+id/tv_user_say"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="16dp"
-                android:layout_toRightOf="@+id/img_user"
-                android:singleLine="true"
-                android:text="想在羊圈找到好朋友"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold" />
+                android:layout_toStartOf="@+id/iv_heart"
+                android:text="愿得一人心，白首不分离.愿得一人心，白首不分离"
+                android:textColor="@color/text"
+                android:textSize="10.5dp" />
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/img_user"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/head"
-                app:riv_oval="true" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_horizontal"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_alignParentBottom="true"
-            android:background="#b2b2b2" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

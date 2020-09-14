@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginRight="5dp"
     android:layout_marginBottom="10dp"
-    android:background="@drawable/bg_tag_select"
+    android:background="@drawable/bg_tag_green"
     android:padding="10dp"
     android:orientation="horizontal">
 

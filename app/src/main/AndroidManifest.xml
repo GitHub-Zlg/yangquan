@@ -78,6 +78,24 @@
             android:name=".activity.PersonHomeActivity"
             android:screenOrientation="portrait" />
 
+        <!--.....................................练习自定义View..................................................-->
+        <activity
+            android:name=".view.test.TestListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.test.QQStepActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.test.ColorTrackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.test.MyProgressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.test.ShapeActivity"
+            android:screenOrientation="portrait" />
+        <!--.....................................练习自定义View..................................................-->
+
         <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
         <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
         <activity

@@ -1,99 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/home"
     android:orientation="vertical">
-    <!--1. 中间可滑动的viewPager-->
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager"
+    <ImageView
+        android:id="@+id/iv_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:clipToPadding="false"
-        android:paddingStart="48dp"
-        android:paddingLeft="48dp"
-        android:paddingEnd="48dp"
-        android:paddingRight="48dp">
+        android:scaleType="centerCrop" />
 
-    </androidx.viewpager.widget.ViewPager>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_bottom"
+        android:layout_marginTop="100dp" />
 
     <LinearLayout
-        android:id="@+id/ll_bottom"
+        android:id="@+id/rl_bottom"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card"
             android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:layout_height="100dp"
-            app:cardBackgroundColor="@color/touming_light"
-            app:cardCornerRadius="5dp">
+            android:orientation="vertical"
+            app:cardCornerRadius="5dp"
+            app:elevation="10dp">
 
-            <TextView
+            <ImageView
+                android:id="@+id/iv_mate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon_mate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
                 android:text="在线匹配"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="15dp" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:layout_height="100dp"
-            android:layout_marginLeft="20dp"
-            app:cardBackgroundColor="@color/touming_light"
-            app:cardCornerRadius="5dp">
+            android:orientation="vertical"
+            app:cardCornerRadius="5dp"
+            app:elevation="10dp">
 
-            <TextView
+            <ImageView
+                android:id="@+id/like_me"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="谁看过我"
-                android:textColor="@color/white" />
-
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="100dp"
-            android:layout_marginLeft="20dp"
-            app:cardBackgroundColor="@color/touming_light"
-            app:cardCornerRadius="5dp">
+                android:scaleType="centerCrop" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
                 android:text="谁喜欢我"
-                android:textColor="@color/white" />
-
+                android:textColor="@color/text"
+                android:textSize="15dp" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:layout_weight="1"
-            android:layout_height="100dp"
-            android:layout_marginLeft="20dp"
-            app:cardBackgroundColor="@color/touming_light"
-            app:cardCornerRadius="5dp">
+            android:orientation="vertical"
+            app:cardCornerRadius="5dp"
+            app:elevation="10dp">
 
-            <TextView
+            <ImageView
+                android:id="@+id/see_me"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="换一批"
-                android:textColor="@color/white" />
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon_see_me" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:text="谁看过我"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:cardCornerRadius="5dp"
+            app:elevation="10dp">
+
+            <ImageView
+                android:id="@+id/change"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_change" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:text="换一批"
+                android:textColor="@color/text"
+                android:textSize="15dp" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </RelativeLayout>

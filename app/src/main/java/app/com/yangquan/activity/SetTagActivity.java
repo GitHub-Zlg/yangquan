@@ -141,7 +141,7 @@ public class SetTagActivity extends BaseActivity {
         };
         recyclerBottom.setLayoutManager(manager);
         recyclerSeleteTag.setLayoutManager(manager2);
-        bottomAdapter = new TagAdapter();
+        bottomAdapter = new TagAdapter(1);
         topAdapter = new TagSelectAdapter();
         recyclerBottom.setAdapter(bottomAdapter);
         recyclerSeleteTag.setAdapter(topAdapter);

@@ -19,28 +19,24 @@
         <attr name="endDrawableAppearTime" format="integer" />
         <attr name="endDrawableDuration" format="integer" />
     </declare-styleable>
+
     <!--聊天气泡-->
     <declare-styleable name="BubbleLayout">
-        <attr name="bubbleBgColor" format="color"/>
-        <attr name="bubbleRadius" format="dimension"/>
-        <attr name="arrowWidth" format="dimension"/>
-        <attr name="arrowHeight" format="dimension"/>
-        <attr name="arrowPositionY" format="dimension"/>
+        <attr name="bubbleBgColor" format="color" />
+        <attr name="bubbleRadius" format="dimension" />
+        <attr name="arrowWidth" format="dimension" />
+        <attr name="arrowHeight" format="dimension" />
+        <attr name="arrowPositionY" format="dimension" />
         <attr name="arrowDirecrion" format="enum">
-            <enum name="left" value="0"/>
-            <enum name="right" value="1"/>
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
         </attr>
     </declare-styleable>
+
     <!--聊天语音播放-->
     <declare-styleable name="WechatAudioPlayView">
         <attr name="color" format="color"></attr>
         <attr name="isReceiver" format="boolean"></attr>
-    </declare-styleable>
-
-    <!--图片拖动DragLayout-->
-    <declare-styleable name="app">
-        <attr name="bottomDragVisibleHeight" format="dimension" />
-        <attr name="bototmExtraIndicatorHeight" format="dimension" />
     </declare-styleable>
 
     <!--个人主页下拉带进度progress-->
@@ -51,5 +47,29 @@
         <attr name="round_textColor" format="color" />
         <attr name="round_textsize" format="dimension" />
         <attr name="round_max" format="integer"></attr>
+    </declare-styleable>
+
+    <!--练习QQ计步器View-->
+    <declare-styleable name="QQStepView">
+        <attr name="outerColor" format="color" /><!--外圈颜色-->
+        <attr name="innerColor" format="color" /><!--进度颜色-->
+        <attr name="bordeWidth" format="dimension" /><!--圆环宽度-->
+        <attr name="stepTextSize" format="dimension" /><!--字体大小-->
+        <attr name="stepTextColor" format="color" /><!--字体颜色-->
+    </declare-styleable>
+
+    <!--练习字体变色View-->
+    <declare-styleable name="ColorTrackTextView">
+        <attr name="originColor" format="color" /><!--原始颜色-->
+        <attr name="changeColor" format="color" /><!--变化颜色-->
+    </declare-styleable>
+
+    <!--练习炫酷进度条-->
+    <declare-styleable name="MyProgreeBar">
+        <attr name="outColor" format="color"/> <!--外圈颜色-->
+        <attr name="inColor" format="color"/><!--内圈颜色-->
+        <attr name="progressTextColor" format="color"/><!--文字颜色-->
+        <attr name="progressTextSize" format="dimension"/><!--文字颜色-->
+        <attr name="ringWidth" format="dimension"/><!--圆环宽度-->
     </declare-styleable>
 </resources>

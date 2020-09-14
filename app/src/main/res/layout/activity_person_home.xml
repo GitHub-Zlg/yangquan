@@ -36,14 +36,10 @@
 
                 <include layout="@layout/layout_person_head_bg" />
 
-                <include
-                    layout="@layout/layout_uc_head_middle"
-                    android:visibility="gone" />
-
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="70dp"
                     android:alpha="0"
                     android:background="@android:color/transparent"
                     android:tag="toolbar"
@@ -52,11 +48,8 @@
 
                 <include layout="@layout/layout_person_head_title" />
 
-                <include layout="@layout/layout_person_data" />
-
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
-
         <include layout="@layout/layout_person_content" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
